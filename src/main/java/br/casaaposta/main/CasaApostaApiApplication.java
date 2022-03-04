@@ -1,13 +1,13 @@
-package com.example.demo;
+package br.casaaposta.main;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CasaapostaApiApplication {
+public class CasaApostaApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CasaapostaApiApplication.class, args);
+		SpringApplication.run(CasaApostaApiApplication.class, args);
 	}
 
 }
