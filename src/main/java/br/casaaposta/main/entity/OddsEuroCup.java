@@ -1,7 +1,7 @@
 package br.casaaposta.main.entity;
 import java.io.Serializable;
 import javax.persistence.*;
-import br.casaaposta.main.model.OddsModel;
+import br.casaaposta.main.models.OddsModel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
