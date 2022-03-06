@@ -1,19 +1,16 @@
 package br.casaaposta.main.entity;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-
 import javax.persistence.Entity;
-
+import br.casaaposta.main.form.AtualizaMetodoForm;
 import br.casaaposta.main.form.MetodoForm;
-import br.casaaposta.main.models.MetodoModel;
 import lombok.Data;
 
 @Entity
 @Data
-public class MetodoEntity {
+public class Metodo {
 
-	public MetodoEntity(MetodoForm metodoForm) {
+	public Metodo(MetodoForm metodoForm) {
 		this.metodo = metodoForm.getMercado();
 		this.equipeCasa = metodoForm.getEquipeCasa();
 		this.equipeVisitante = metodoForm.getEquipeVisitante();
@@ -25,6 +22,21 @@ public class MetodoEntity {
 		this.hora = metodoForm.getHora();
 		
 	}
+	
+	public Metodo(AtualizaMetodoForm metodoForm) {
+		this.metodo = metodoForm.getMercado();
+		this.equipeCasa = metodoForm.getEquipeCasa();
+		this.equipeVisitante = metodoForm.getEquipeVisitante();
+		this.mercado = metodoForm.getMercado();
+		this.odds = metodoForm.getOdds();
+		this.liga = metodoForm.getLiga();
+		this.entradas = metodoForm.getEntradas();
+		this.resultados = metodoForm.getResultados();
+		this.hora = metodoForm.getHora();
+		
+	}
+	
+	
 	private Integer id;
 	private String metodo;
 	private String equipeCasa;

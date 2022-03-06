@@ -2,7 +2,7 @@ package br.casaaposta.main.entity;
 import java.io.Serializable;
 import javax.persistence.*;
 
-import br.casaaposta.main.models.OddsModel;
+import br.casaaposta.main.dto.OddsDTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Table(name="OddsPremiercup")
 @NoArgsConstructor
 @Data
-public class OddsPremierCup extends OddsModel implements Serializable{
+public class OddsPremierCup extends OddsDTO implements Serializable{
 	
 	private static final long serialVersionUID = 8511686573089879079L;
 
@@ -21,7 +21,7 @@ public class OddsPremierCup extends OddsModel implements Serializable{
 	@Column(name="Id")	
 	private Integer Id;
 
-	@Column(name="Resultado")
+	@Column(name="ResultadoDTO")
 	private String resultado;
 
 	@Column(name="Hora")

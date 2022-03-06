@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
 
 
 @Entity
-@Table(name = "Log")
-@NoArgsConstructor
+@Table(name = "LogApi")
 @Data
 public class Log implements Serializable{
 

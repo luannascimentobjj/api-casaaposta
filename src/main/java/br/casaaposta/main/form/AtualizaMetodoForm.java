@@ -1,13 +1,13 @@
 package br.casaaposta.main.form;
-
-import br.casaaposta.main.dto.MetodoDTO;
-import br.casaaposta.main.entity.Metodo;
-import lombok.Data;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import br.casaaposta.main.entity.Metodo;
+import br.casaaposta.main.repository.MetodoRespository;
+import lombok.Data;
 
 @Data
-public class MetodoForm {
+public class AtualizaMetodoForm {
+
 
     @NotNull @NotEmpty
     private String metodo;
@@ -39,12 +39,19 @@ public class MetodoForm {
     @NotNull @NotEmpty
     private String data;
 
-    public Metodo converter (MetodoForm metodo){
-        return new Metodo(metodo);
+    public Metodo atualizar (Long id, MetodoRespository metodoRepository_){
+    	Metodo met = metodoRepository_.getById(id);
+    	met.setMetodo(this.metodo);
+    	met.setEquipeCasa(this.equipeCasa);
+    	met.setEquipeVisitante(this.equipeVisitante);
+    	met.setMercado(this.mercado);
+    	met.setOdds(this.odds);
+    	met.setLiga(this.liga);
+    	met.setEntradas(this.entradas);
+    	met.setResultados(this.resultados);
+    	met.setHora(this.hora);
+    	met.setData(this.data);
+    	return met;
     }
-
-    public MetodoDTO converterToDTO (Metodo metodo){
-        return new MetodoDTO(metodo);
-    }
-    
+	
 }

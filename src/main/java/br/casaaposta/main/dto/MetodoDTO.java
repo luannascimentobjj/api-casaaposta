@@ -1,10 +1,14 @@
-package br.casaaposta.main.models;
+package br.casaaposta.main.dto;
 
-import br.casaaposta.main.entity.MetodoEntity;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import br.casaaposta.main.entity.Metodo;
 import lombok.Data;
 
 @Data
-public class MetodoModel {
+public class MetodoDTO {
 
 	private Integer id;
 	private String metodo;
@@ -18,7 +22,7 @@ public class MetodoModel {
 	private String hora;
 	private String data;
 
-	public MetodoModel(MetodoEntity metodo){
+	public MetodoDTO(Metodo metodo){
 		this.id = metodo.getId();
 		this.metodo = metodo.getMetodo();
 		this.equipeCasa = metodo.getEquipeCasa();
@@ -31,4 +35,11 @@ public class MetodoModel {
 	}
 
 
+
+	
+
+	public static List<MetodoDTO> converter(Optional<Metodo> metodos) {
+		return metodos.stream().map(MetodoDTO::new).collect(Collectors.toList());
+	}
+	
 }

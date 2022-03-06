@@ -11,7 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "Liga")
+@Table(name = "LigaDTO")
 @NoArgsConstructor
 @Data
 public class Liga implements Serializable {

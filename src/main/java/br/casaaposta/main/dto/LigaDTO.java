@@ -1,9 +1,9 @@
-package br.casaaposta.main.models;
+package br.casaaposta.main.dto;
 
 import lombok.Data;
 
 @Data
-public class LigaModel {
+public class LigaDTO {
 
 	private int id;
 	

@@ -11,7 +11,7 @@ import br.casaaposta.main.entity.Liga;
 
 public interface LigaRepository extends JpaRepository<Liga, Integer> {
 
-	@Query("Select l from Liga l where l.codLiga = :codLiga")
+	@Query("Select l from LigaDTO l where l.codLiga = :codLiga")
 	Optional<Liga> findByCodLiga(String codLiga);
 
 

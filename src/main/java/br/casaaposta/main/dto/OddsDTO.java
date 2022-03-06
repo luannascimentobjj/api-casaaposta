@@ -1,4 +1,4 @@
-package br.casaaposta.main.models;
+package br.casaaposta.main.dto;
 import java.io.Serializable;
 import br.casaaposta.main.entity.Liga;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Data
-public class OddsModel implements Serializable { 
+public class OddsDTO implements Serializable { 
 	
 	private static final long serialVersionUID = 2709912232043849993L;
 
