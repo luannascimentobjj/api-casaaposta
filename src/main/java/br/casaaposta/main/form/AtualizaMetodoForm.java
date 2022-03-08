@@ -1,8 +1,9 @@
 package br.casaaposta.main.form;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import br.casaaposta.main.entity.Metodo;
-import br.casaaposta.main.repository.MetodoRespository;
+
+import br.casaaposta.main.entity.api.Metodo;
+import br.casaaposta.main.repository.api.MetodoRespository;
 import lombok.Data;
 
 @Data

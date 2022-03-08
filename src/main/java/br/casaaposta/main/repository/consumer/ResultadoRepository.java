@@ -1,7 +1,8 @@
-package br.casaaposta.main.repository;
+package br.casaaposta.main.repository.consumer;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import br.casaaposta.main.entity.Resultado;
+
+import br.casaaposta.main.entity.consumer.Resultado;
 
 public interface ResultadoRepository extends JpaRepository<Resultado, Long>{
 	

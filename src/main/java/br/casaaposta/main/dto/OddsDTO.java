@@ -1,6 +1,7 @@
 package br.casaaposta.main.dto;
 import java.io.Serializable;
-import br.casaaposta.main.entity.Liga;
+
+import br.casaaposta.main.entity.consumer.Liga;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

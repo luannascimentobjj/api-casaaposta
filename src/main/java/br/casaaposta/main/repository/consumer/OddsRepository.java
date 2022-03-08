@@ -1,7 +1,8 @@
-package br.casaaposta.main.repository;
+package br.casaaposta.main.repository.consumer;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import br.casaaposta.main.entity.OddsEuroCup;
+
+import br.casaaposta.main.entity.consumer.OddsEuroCup;
 
 public interface OddsRepository extends JpaRepository<OddsEuroCup, Long> {
 

@@ -1,12 +1,16 @@
-package br.casaaposta.main.entity;
+package br.casaaposta.main.entity.api;
 
 import java.time.LocalDateTime;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import br.casaaposta.main.form.AtualizaMetodoForm;
 import br.casaaposta.main.form.MetodoForm;
 import lombok.Data;
 
 @Entity
+@Table(name = "Metodos")
 @Data
 public class Metodo {
 
@@ -36,7 +40,7 @@ public class Metodo {
 		
 	}
 	
-	
+	@Id
 	private Integer id;
 	private String metodo;
 	private String equipeCasa;

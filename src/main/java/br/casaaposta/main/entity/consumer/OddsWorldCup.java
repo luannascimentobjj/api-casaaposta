@@ -1,24 +1,21 @@
-package br.casaaposta.main.entity;
+package br.casaaposta.main.entity.consumer;
+import java.io.Serializable;
+import javax.persistence.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import br.casaaposta.main.dto.OddsDTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
+
 @Entity
-@Table(name="ResultadoDTO")
+@Table(name="OddsWorldcup")
 @NoArgsConstructor
 @Data
-public class Resultado {
+public class OddsWorldCup extends OddsDTO implements Serializable{
 	
+	private static final long serialVersionUID = 8511686573089879079L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="Id")	
@@ -26,7 +23,7 @@ public class Resultado {
 
 	@Column(name="ResultadoDTO")
 	private String resultado;
-	
+
 	@Column(name="Hora")
 	private int hora;
 	
@@ -62,6 +59,7 @@ public class Resultado {
 	
 	@Column(name="ano")
 	private String ano;
+	
 	
 	@ManyToOne(optional = false, fetch = FetchType.LAZY)
 	@JoinColumn(name = "codLiga", referencedColumnName = "codLiga")

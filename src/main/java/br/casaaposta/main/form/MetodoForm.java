@@ -1,7 +1,7 @@
 package br.casaaposta.main.form;
 
 import br.casaaposta.main.dto.MetodoDTO;
-import br.casaaposta.main.entity.Metodo;
+import br.casaaposta.main.entity.api.Metodo;
 import lombok.Data;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;

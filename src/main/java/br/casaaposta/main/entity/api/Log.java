@@ -1,11 +1,11 @@
-package br.casaaposta.main.entity;
+package br.casaaposta.main.entity.api;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import javax.persistence.*;
 import org.hibernate.annotations.Type;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+
 
 
 @Entity

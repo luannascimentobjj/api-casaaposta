@@ -1,13 +1,11 @@
 package br.casaaposta.main.controllers;
 
 import br.casaaposta.main.dto.MetodoDTO;
-import br.casaaposta.main.entity.Log;
-import br.casaaposta.main.entity.Metodo;
+import br.casaaposta.main.entity.api.Log;
+import br.casaaposta.main.entity.api.Metodo;
 import br.casaaposta.main.form.AtualizaMetodoForm;
 import br.casaaposta.main.form.MetodoForm;
-import br.casaaposta.main.repository.MetodoRespository;
-
-import org.hibernate.criterion.Example;
+import br.casaaposta.main.repository.api.MetodoRespository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;

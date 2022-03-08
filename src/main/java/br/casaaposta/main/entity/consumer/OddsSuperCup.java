@@ -1,4 +1,4 @@
-package br.casaaposta.main.entity;
+package br.casaaposta.main.entity.consumer;
 import java.io.Serializable;
 import javax.persistence.*;
 
@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 
 
 @Entity
-@Table(name="OddsEurocup")
+@Table(name="OddsSupercup")
 @NoArgsConstructor
 @Data
-public class OddsEuroCup extends OddsDTO implements Serializable{
+public class OddsSuperCup  extends OddsDTO implements Serializable{
 	
 	private static final long serialVersionUID = 8511686573089879079L;
 

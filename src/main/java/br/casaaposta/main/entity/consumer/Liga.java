@@ -1,4 +1,4 @@
-package br.casaaposta.main.entity;
+package br.casaaposta.main.entity.consumer;
 
 import java.io.Serializable;
 import java.util.List;
@@ -11,7 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "LigaDTO")
+@Table(name = "liga")
 @NoArgsConstructor
 @Data
 public class Liga implements Serializable {
