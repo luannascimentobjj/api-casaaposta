@@ -1,5 +1,8 @@
 package br.casaaposta.main.config;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -22,6 +25,7 @@ public class ApiApostaDbConfig {
 	@ConfigurationProperties(prefix = "api.datasource")
 	DataSource apiApostaDataSource() {
 
+		
 		return DataSourceBuilder.create().build();
 
 	}
@@ -30,7 +34,16 @@ public class ApiApostaDbConfig {
 	@Primary
 	public LocalContainerEntityManagerFactoryBean apiEntityManager(EntityManagerFactoryBuilder builder,
 			@Qualifier("apiApostaDataSource") DataSource dataSource) {
-		return builder.dataSource(dataSource).packages("br.casaaposta.main.entity.api").build();
+		Map<String, Object> properties = new HashMap<String, Object>();
+		properties.put("hibernate.ddl-auto", "update");
+		properties.put("show-sql", "true");
+		properties.put("show-sql", "true");
+		properties.put("driverClassName", "com.mysql.jdbc.Driver");
+		properties.put("database-platform", "org.hibernate.dialect.MySQL8Dialect");
+		
+		
+		return builder.dataSource(dataSource)
+				.packages("br.casaaposta.main.entity.api").properties(properties).build();
 
 	}
 
