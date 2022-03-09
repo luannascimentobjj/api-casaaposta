@@ -35,13 +35,12 @@ public class ApiApostaDbConfig {
 	public LocalContainerEntityManagerFactoryBean apiEntityManager(EntityManagerFactoryBuilder builder,
 			@Qualifier("apiApostaDataSource") DataSource dataSource) {
 		Map<String, Object> properties = new HashMap<String, Object>();
-		properties.put("hibernate.ddl-auto", "update");
-		properties.put("show-sql", "true");
-		properties.put("show-sql", "true");
-		properties.put("driverClassName", "com.mysql.jdbc.Driver");
-		properties.put("database-platform", "org.hibernate.dialect.MySQL8Dialect");
-		
-		
+		properties.put("spring.datasource.driverClassName", "com.mysql.jdbc.Driver");
+		properties.put("spring.jpa.database-platform", "org.hibernate.dialect.MySQL8Dialect");
+		properties.put("spring.jpa.show-sql", "true");
+		properties.put("spring.jpa.hibernate.ddl-auto", "true");
+		properties.put("spring.jpa.defer-datasource-initialization", "true");
+	
 		return builder.dataSource(dataSource)
 				.packages("br.casaaposta.main.entity.api").properties(properties).build();
 
