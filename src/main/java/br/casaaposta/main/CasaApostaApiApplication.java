@@ -9,7 +9,10 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 public class CasaApostaApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CasaApostaApiApplication.class, args);
+		SpringApplication springApp = new SpringApplication(CasaApostaApiApplication.class);
+		springApp.setAdditionalProfiles("dev", "prod");
+		springApp.run(args);
+		
 	}
 
 }

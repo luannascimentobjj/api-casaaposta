@@ -1,15 +1,15 @@
 package br.casaaposta.main.config;
 import java.util.Properties;
+
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -26,12 +26,11 @@ public class ApiApostaDbConfig {
 	
 	
 	@Primary
-	@Profile("dev")
+	//@Profile("dev")
 	@Bean
 	DataSource apiApostaDataSource() {
 
-		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		return DataSourceBuilder
+				return DataSourceBuilder
 				.create()
 				.username("root")
 				.password("1234")
