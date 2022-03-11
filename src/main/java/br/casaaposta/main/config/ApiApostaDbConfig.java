@@ -4,11 +4,14 @@ import java.util.Properties;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
+import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -22,11 +25,10 @@ import br.casaaposta.main.repository.api.MetodoRespository;
 public class ApiApostaDbConfig {
 
 	@Autowired
-	
-	
+	private Environment env;
 	
 	@Primary
-	//@Profile("dev")
+	@Profile("dev")
 	@Bean
 	DataSource apiApostaDataSource() {
 
@@ -34,9 +36,10 @@ public class ApiApostaDbConfig {
 				.create()
 				.username("root")
 				.password("1234")
-				.url("jdbc:mysql://localhost/api_aposta")
+				.url("jdbc:mysql://localhost:3306/api_aposta")
 				.driverClassName("com.mysql.jdbc.Driver")
 				.build();
+				
 
 	}
 

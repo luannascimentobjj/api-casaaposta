@@ -23,7 +23,13 @@ public class ApostaDbConfig {
 	@ConfigurationProperties(prefix = "spring.second-datasource")
 	DataSource consumerDataSource() {
 
-		return DataSourceBuilder.create().build();
+		return DataSourceBuilder
+				.create()
+				.username("root")
+				.password("1234")
+				.url("jdbc:mysql://localhost:3306/aposta")
+				.driverClassName("com.mysql.jdbc.Driver")
+				.build();
 
 	}
 
