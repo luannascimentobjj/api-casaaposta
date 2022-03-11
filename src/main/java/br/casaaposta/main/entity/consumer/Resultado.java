@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 
 
 @Entity
-@Table(name="ResultadoDTO")
+@Table(name="Resultado")
 @NoArgsConstructor
 @Data
 public class Resultado {
@@ -24,7 +24,7 @@ public class Resultado {
 	@Column(name="Id")	
 	private Integer Id;
 
-	@Column(name="ResultadoDTO")
+	@Column(name="Resultado")
 	private String resultado;
 	
 	@Column(name="Hora")

@@ -1,12 +1,11 @@
 package br.casaaposta.main.controllers;
 
-import br.casaaposta.main.dto.MetodoDTO;
-import br.casaaposta.main.entity.api.Log;
-import br.casaaposta.main.entity.api.Metodo;
-import br.casaaposta.main.form.AtualizaMetodoForm;
-import br.casaaposta.main.form.MetodoForm;
-import br.casaaposta.main.repository.api.MetodoRespository;
-import io.swagger.annotations.Api;
+import java.net.URI;
+import java.util.List;
+import java.util.Optional;
+
+import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,16 +19,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.net.URI;
-import java.util.List;
-import java.util.Optional;
-
-import javax.transaction.Transactional;
-import javax.validation.Valid;
+import br.casaaposta.main.dto.MetodoDTO;
+import br.casaaposta.main.entity.api.Log;
+import br.casaaposta.main.entity.api.Metodo;
+import br.casaaposta.main.form.AtualizaMetodoForm;
+import br.casaaposta.main.form.MetodoForm;
+import br.casaaposta.main.repository.api.MetodoRespository;
 
 @RestController
 @RequestMapping("/metodos")
-@Api(value = "API REST Metodos")
 public class MetodoController {
 
 	@Autowired

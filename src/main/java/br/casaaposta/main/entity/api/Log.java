@@ -6,8 +6,6 @@ import javax.persistence.*;
 import org.hibernate.annotations.Type;
 import lombok.Data;
 
-
-
 @Entity
 @Table(name = "LogApi")
 @Data

@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 
 
 @Entity
-@Table(name="OddsSupercup")
+@Table(name="odds_supercup")
 @NoArgsConstructor
 @Data
 public class OddsSuperCup  extends OddsDTO implements Serializable{
@@ -21,7 +21,7 @@ public class OddsSuperCup  extends OddsDTO implements Serializable{
 	@Column(name="Id")	
 	private Integer Id;
 
-	@Column(name="ResultadoDTO")
+	@Column(name="Resultado")
 	private String resultado;
 
 	@Column(name="Hora")

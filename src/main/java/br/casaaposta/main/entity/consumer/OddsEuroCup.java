@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name="OddsEurocup")
 @NoArgsConstructor
-@Data
 public class OddsEuroCup extends OddsDTO implements Serializable{
 	
 	private static final long serialVersionUID = 8511686573089879079L;
@@ -21,7 +20,7 @@ public class OddsEuroCup extends OddsDTO implements Serializable{
 	@Column(name="Id")	
 	private Integer Id;
 
-	@Column(name="ResultadoDTO")
+	@Column(name="Resultado")
 	private String resultado;
 
 	@Column(name="Hora")

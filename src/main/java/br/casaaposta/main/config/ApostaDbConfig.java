@@ -1,45 +1,54 @@
 package br.casaaposta.main.config;
 
+import java.util.Properties;
+
 import javax.sql.DataSource;
 
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
-import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 import br.casaaposta.main.repository.consumer.LigaRepository;
+import br.casaaposta.main.util.BDPropertiesUtil;
 
 @Configuration
-@PropertySource({"classpath:application.properties"})
-@EnableJpaRepositories(basePackageClasses = LigaRepository.class,  entityManagerFactoryRef = "consumerEntityManager")
+@EnableJpaRepositories(basePackageClasses = LigaRepository.class, entityManagerFactoryRef = "consumerEntityManager")
 public class ApostaDbConfig {
 
 	@Bean
-	@ConfigurationProperties(prefix = "spring.second-datasource")
+	@Profile("dev")
 	DataSource consumerDataSource() {
 
-		return DataSourceBuilder
-				.create()
-				.username("root")
-				.password("1234")
-				.url("jdbc:mysql://localhost:3306/aposta")
-				.driverClassName("com.mysql.jdbc.Driver")
-				.build();
+		return DataSourceBuilder.create().username(BDPropertiesUtil.LOCAL_USERNAME_APOSTA)
+				.password(BDPropertiesUtil.LOCAL_PASSWORD_APOSTA).url(BDPropertiesUtil.LOCAL_URL_APOSTA)
+				.driverClassName(BDPropertiesUtil.LOCAL_DRIVERCLASSNAME_APOSTA).build();
 
 	}
 
 	@Bean
-	public LocalContainerEntityManagerFactoryBean consumerEntityManager(EntityManagerFactoryBuilder builder,
-			@Qualifier("consumerDataSource") DataSource dataSource) {
-		return builder.dataSource(dataSource).packages("br.casaaposta.main.entity.consumer").build();
+	public LocalContainerEntityManagerFactoryBean consumerEntityManager() {
+		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+		em.setDataSource(consumerDataSource());
+		em.setPackagesToScan("br.casaaposta.main.entity.consumer");
 
+		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+		em.setJpaVendorAdapter(vendorAdapter);
+		Properties properties = new Properties();
+		properties.setProperty(BDPropertiesUtil.ADITIONAL_PROPERTIES_DIALECT,
+				BDPropertiesUtil.ADITIONAL_PROPERTIES_DIALECT_VALUE);
+		properties.setProperty(BDPropertiesUtil.ADITIONAL_PROPERTIES_SHOWSQL,
+				BDPropertiesUtil.ADITIONAL_PROPERTIES_SHOWSQL_VALUE);
+		properties.setProperty(BDPropertiesUtil.ADITIONAL_PROPERTIES_HBM2DDL_AUTO,
+				BDPropertiesUtil.ADITIONAL_PROPERTIES_HBM2DDL_AUTO_VALUE);
+		em.setJpaProperties(properties);
+
+		return em;
 	}
-	
-	
+
+
 
 }
