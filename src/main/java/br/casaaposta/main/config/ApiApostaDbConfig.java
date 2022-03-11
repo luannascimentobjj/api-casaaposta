@@ -55,8 +55,8 @@ public class ApiApostaDbConfig {
         em.setJpaVendorAdapter(vendorAdapter);
         Properties properties = new Properties();
         properties.setProperty("hibernate.ddl-auto", "update");
-        properties.setProperty("defer-datasource-initialization", "true");
-        properties.setProperty("show-sql", "true");
+        properties.setProperty("jpa.defer-datasource-initialization", "true");
+        properties.setProperty("jpa.show-sql", "true");
         properties.setProperty("hibernate.dialect","org.hibernate.dialect.MySQL8Dialect");
         em.setJpaProperties(properties);
         

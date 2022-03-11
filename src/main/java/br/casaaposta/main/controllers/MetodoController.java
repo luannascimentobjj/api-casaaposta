@@ -6,6 +6,8 @@ import br.casaaposta.main.entity.api.Metodo;
 import br.casaaposta.main.form.AtualizaMetodoForm;
 import br.casaaposta.main.form.MetodoForm;
 import br.casaaposta.main.repository.api.MetodoRespository;
+import io.swagger.annotations.Api;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,6 +29,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/metodos")
+@Api(value = "API REST Metodos")
 public class MetodoController {
 
 	@Autowired
