@@ -12,12 +12,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import br.casaaposta.main.dto.OddsDTO;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
 
 @Entity
 @Table(name="odds_eurocup")
+@Data
 @NoArgsConstructor
 public class OddsEuroCup extends OddsDTO implements Serializable{
 	

@@ -16,6 +16,8 @@ public interface ResultadoRepository extends JpaRepository<Resultado, Long>{
 	
 	List<Resultado> findByDataOrderByResultadoTipoAsc(String data);
 	
+	List<Resultado> findByResultadoTipoOrderByResultadoTipoAsc(String resultadoTipo);
+	
 		
 	}
 
