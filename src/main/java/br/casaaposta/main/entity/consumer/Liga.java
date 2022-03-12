@@ -34,4 +34,9 @@ public class Liga implements Serializable {
 	private List<Resultado> resultado;
 	
 
+	public Liga(String codLiga){
+		this.codLiga = codLiga;
+		
+	}
+	
 }

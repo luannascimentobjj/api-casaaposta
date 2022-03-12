@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.springframework.stereotype.Component;
-
 import br.casaaposta.main.entity.api.Metodo;
 import lombok.Data;
 

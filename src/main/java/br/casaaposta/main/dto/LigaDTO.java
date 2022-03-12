@@ -1,7 +1,6 @@
 package br.casaaposta.main.dto;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import br.casaaposta.main.entity.consumer.Liga;
