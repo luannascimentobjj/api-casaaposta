@@ -34,10 +34,10 @@ public class ResultadoController {
 	@GetMapping("/{data}")
 	public List<ResultadoDTO> findResultsByData(@PathVariable String data) {
 
-	//	 List<Resultado> resultados = resultadoRepoRespository_.findByCodLigaOrderByResultadoTipoAsc(new Liga(codLiga));
+		 List<Resultado> resultados = resultadoRepoRespository_.findByDataOrderByResultadoTipoAsc(data);
 	
-		//		return ResultadoDTO.converter(resultados);
-		return null;
+			return ResultadoDTO.converter(resultados);
+		
 	
 	}
 	

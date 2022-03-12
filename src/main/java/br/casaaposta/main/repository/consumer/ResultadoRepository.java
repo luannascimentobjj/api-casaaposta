@@ -13,6 +13,9 @@ public interface ResultadoRepository extends JpaRepository<Resultado, Long>{
 	Resultado findByTollTipAndMinutoAndHoraAndResultadoTipo(String toolTip, int minuto, int hora, String resultadoTipo);
 	
 	List<Resultado> findByCodLigaOrderByResultadoTipoAsc(Liga liga);
+	
+	List<Resultado> findByDataOrderByResultadoTipoAsc(String data);
+	
 		
 	}
 
