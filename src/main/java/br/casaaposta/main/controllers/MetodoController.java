@@ -51,8 +51,7 @@ public class MetodoController {
 	}
 
 	@DeleteMapping("/{id}")
-	@Transactional
-	public ResponseEntity<?> remover(@PathVariable Long id) {
+		public ResponseEntity<?> remover(@PathVariable Long id) {
 
 		try {
 
@@ -71,8 +70,7 @@ public class MetodoController {
 	}
 	
 	@PutMapping("/{id}")
-	@Transactional
-	public ResponseEntity<MetodoDTO> atualizar(@PathVariable Long id, @RequestBody @Valid AtualizaMetodoForm form) {
+		public ResponseEntity<MetodoDTO> atualizar(@PathVariable Long id, @RequestBody @Valid AtualizaMetodoForm form) {
 		Optional<Metodo> optional = metodoRepository_.findById(id);
 		if (optional.isPresent()) {
 			Metodo metodo = form.atualizar(id, metodoRepository_);
@@ -84,14 +82,12 @@ public class MetodoController {
 	
 
 	@GetMapping()
-	public List<MetodoDTO> buscarMetodos(MetodoDTO metodoDTO) {
-		 Optional<Metodo> metodos = metodoRepository_.findBy(metodoDTO);
-			if (metodos.isPresent()) {
-				
-				return MetodoDTO.converter(metodos);
-			}
-			return null;
-
+	public List<MetodoDTO> buscarMetodos() {
+		 List<Metodo> metodos = metodoRepository_.findAll();
+			
+			return MetodoDTO.converter(metodos);
+			
+			
 	}
 
 }

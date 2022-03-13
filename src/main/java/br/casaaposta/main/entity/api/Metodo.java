@@ -16,37 +16,9 @@ import lombok.Data;
 @Data
 public class Metodo {
 
-	public Metodo(MetodoForm metodoForm) {
-		this.metodo = metodoForm.getMetodo();
-		this.equipeCasa = metodoForm.getEquipeCasa();
-		this.equipeVisitante = metodoForm.getEquipeVisitante();
-		this.mercado = metodoForm.getMercado();
-		this.odds = metodoForm.getOdds();
-		this.liga = metodoForm.getLiga();
-		this.entradas = metodoForm.getEntradas();
-		this.resultados = metodoForm.getResultados();
-		this.hora = metodoForm.getHora();
-		this.data = metodoForm.getData();
-		
-	}
-	
-	public Metodo(AtualizaMetodoForm metodoForm) {
-		this.metodo = metodoForm.getMetodo();
-		this.equipeCasa = metodoForm.getEquipeCasa();
-		this.equipeVisitante = metodoForm.getEquipeVisitante();
-		this.mercado = metodoForm.getMercado();
-		this.odds = metodoForm.getOdds();
-		this.liga = metodoForm.getLiga();
-		this.entradas = metodoForm.getEntradas();
-		this.resultados = metodoForm.getResultados();
-		this.hora = metodoForm.getHora();
-		this.data = metodoForm.getData();
-		
-	}
-	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 	private String metodo;
 	private String equipeCasa;
 	private String equipeVisitante;
@@ -58,5 +30,37 @@ public class Metodo {
 	private String hora;
 	private String data;
 	private LocalDateTime dataInclusaoRegistro;
-	
+
+	public Metodo() {
+
+	}
+
+	public Metodo(MetodoForm metodoForm) {
+		this.metodo = metodoForm.getMetodo();
+		this.equipeCasa = metodoForm.getEquipeCasa();
+		this.equipeVisitante = metodoForm.getEquipeVisitante();
+		this.mercado = metodoForm.getMercado();
+		this.odds = metodoForm.getOdds();
+		this.liga = metodoForm.getLiga();
+		this.entradas = metodoForm.getEntradas();
+		this.resultados = metodoForm.getResultados();
+		this.hora = metodoForm.getHora();
+		this.data = metodoForm.getData();
+
+	}
+
+	public Metodo(AtualizaMetodoForm metodoForm) {
+		this.metodo = metodoForm.getMetodo();
+		this.equipeCasa = metodoForm.getEquipeCasa();
+		this.equipeVisitante = metodoForm.getEquipeVisitante();
+		this.mercado = metodoForm.getMercado();
+		this.odds = metodoForm.getOdds();
+		this.liga = metodoForm.getLiga();
+		this.entradas = metodoForm.getEntradas();
+		this.resultados = metodoForm.getResultados();
+		this.hora = metodoForm.getHora();
+		this.data = metodoForm.getData();
+
+	}
+
 }

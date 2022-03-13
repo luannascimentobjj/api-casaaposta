@@ -1,7 +1,6 @@
 package br.casaaposta.main.dto;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import br.casaaposta.main.entity.api.Metodo;
@@ -10,7 +9,7 @@ import lombok.Data;
 @Data
 public class MetodoDTO {
 
-	private Integer id;
+	private Long id;
 	private String metodo;
 	private String equipeCasa;
 	private String equipeVisitante;
@@ -38,7 +37,7 @@ public class MetodoDTO {
 
 	
 
-	public static List<MetodoDTO> converter(Optional<Metodo> metodos) {
+	public static List<MetodoDTO> converter(List<Metodo> metodos) {
 		return metodos.stream().map(MetodoDTO::new).collect(Collectors.toList());
 	}
 	
