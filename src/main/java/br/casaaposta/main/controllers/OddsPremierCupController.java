@@ -23,7 +23,7 @@ public class OddsPremierCupController {
 	@Autowired
 	private OddsPremierCupRepository oddsPremierCupRepository_;
 	
-	@GetMapping(value = "findOddsPremierCup/")
+	@GetMapping(value = "findOdds/")
 	public ResponseEntity<List<OddsDTO>> findOddsPremierCup() {
 
 		List<OddsPremierCup> resultados = oddsPremierCupRepository_.findAll();

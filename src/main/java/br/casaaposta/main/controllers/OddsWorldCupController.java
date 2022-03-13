@@ -25,7 +25,7 @@ public class OddsWorldCupController {
 	
 
 	
-	@GetMapping(value = "findOddsWorldCup/")
+	@GetMapping(value = "findOdds")
 	public ResponseEntity<List<OddsDTO>> findOddsWorldCup() {
 
 		List<OddsWorldCup> resultados = oddsWorldCupRepository_.findAll();

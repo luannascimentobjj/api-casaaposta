@@ -21,7 +21,7 @@ public class OddsSuperCupController {
 	@Autowired
 	private OddsSuperCupRepository oddsSuperCupRepository_;
 	
-	@GetMapping(value = "findOddsSuperCup/")
+	@GetMapping(value = "findOdds/")
 	public ResponseEntity<List<OddsDTO>> findOddsSuperCup() {
 
 		List<OddsSuperCup> resultados = oddsSuperCupRepository_.findAll();

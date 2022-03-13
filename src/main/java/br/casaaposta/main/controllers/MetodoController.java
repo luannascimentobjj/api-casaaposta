@@ -35,7 +35,6 @@ public class MetodoController {
 	private Log logger_ = new Log();
 
 	@PostMapping
-	@Transactional
 	public ResponseEntity<MetodoDTO> cadastrar(@RequestBody @Valid MetodoForm form, UriComponentsBuilder uriBuilder) {
 
 		try {

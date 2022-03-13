@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name="odds_premiercup")
 @NoArgsConstructor
+@Data
 public class OddsPremierCup extends OddsDTO implements Serializable{
 	
 	private static final long serialVersionUID = 8511686573089879079L;

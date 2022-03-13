@@ -2,6 +2,8 @@ package br.casaaposta.main.entity.api;
 
 import java.time.LocalDateTime;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -15,7 +17,7 @@ import lombok.Data;
 public class Metodo {
 
 	public Metodo(MetodoForm metodoForm) {
-		this.metodo = metodoForm.getMercado();
+		this.metodo = metodoForm.getMetodo();
 		this.equipeCasa = metodoForm.getEquipeCasa();
 		this.equipeVisitante = metodoForm.getEquipeVisitante();
 		this.mercado = metodoForm.getMercado();
@@ -24,11 +26,12 @@ public class Metodo {
 		this.entradas = metodoForm.getEntradas();
 		this.resultados = metodoForm.getResultados();
 		this.hora = metodoForm.getHora();
+		this.data = metodoForm.getData();
 		
 	}
 	
 	public Metodo(AtualizaMetodoForm metodoForm) {
-		this.metodo = metodoForm.getMercado();
+		this.metodo = metodoForm.getMetodo();
 		this.equipeCasa = metodoForm.getEquipeCasa();
 		this.equipeVisitante = metodoForm.getEquipeVisitante();
 		this.mercado = metodoForm.getMercado();
@@ -37,10 +40,12 @@ public class Metodo {
 		this.entradas = metodoForm.getEntradas();
 		this.resultados = metodoForm.getResultados();
 		this.hora = metodoForm.getHora();
+		this.data = metodoForm.getData();
 		
 	}
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	private String metodo;
 	private String equipeCasa;
