@@ -1,7 +1,6 @@
 package br.casaaposta.main.dto;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import br.casaaposta.main.entity.consumer.Resultado;
@@ -42,7 +41,7 @@ public class ResultadoDTO {
 		this.Id = resultado.getId();
 		this.timeCasa = resultado.getTimeCasa();
 		this.timeVisitante = resultado.getTimeVisitante();
-		this.jogo = resultado.getTimeCasa().trim() + " vs " + resultado.getTimeVisitante().trim();
+		this.jogo = resultado.getTimeCasa() + " vs " + resultado.getTimeVisitante();
  		this.resultado = resultado.getResultado();
 		this.data = resultado.getData();
 		this.percentual = resultado.getPercentual();

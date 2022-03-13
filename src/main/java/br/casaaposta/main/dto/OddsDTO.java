@@ -1,11 +1,13 @@
 package br.casaaposta.main.dto;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import br.casaaposta.main.entity.consumer.Liga;
 import br.casaaposta.main.entity.consumer.OddsEuroCup;
+import br.casaaposta.main.entity.consumer.OddsPremierCup;
+import br.casaaposta.main.entity.consumer.OddsSuperCup;
+import br.casaaposta.main.entity.consumer.OddsWorldCup;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -56,7 +58,7 @@ public class OddsDTO implements Serializable {
 		this.Id = oddsEuroCup.getId();
 		this.timeCasa = oddsEuroCup.getTimeCasa();
 		this.timeVisitante = oddsEuroCup.getTimeVisitante();
-		this.jogo = oddsEuroCup.getTimeCasa().trim() + " vs " + oddsEuroCup.getTimeVisitante().trim();
+		this.jogo = oddsEuroCup.getTimeCasa() + " vs " + oddsEuroCup.getTimeVisitante();
  		this.resultado = oddsEuroCup.getResultado();
 		this.data = oddsEuroCup.getData();
 		this.percentual = oddsEuroCup.getPercentual();
@@ -69,14 +71,76 @@ public class OddsDTO implements Serializable {
 		
 	}
 	
-	public static List<String> converterToReturnAllResultsType(List<OddsEuroCup> oddsEuroCup) {
-		List<String> listToReturn = new ArrayList<>();
-		oddsEuroCup.stream().map(OddsDTO::new).collect(Collectors.toList()).forEach(list -> {
-			if(!listToReturn.contains(list.getResultadoTipo())) {
-				listToReturn.add(list.getResultadoTipo());
-			}
-		});
-		return listToReturn;
+		
+	public OddsDTO(OddsSuperCup oddsSuperCup){
+		
+		this.Id = oddsSuperCup.getId();
+		this.timeCasa = oddsSuperCup.getTimeCasa();
+		this.timeVisitante = oddsSuperCup.getTimeVisitante();
+		this.jogo = oddsSuperCup.getTimeCasa() + " vs " + oddsSuperCup.getTimeVisitante();
+ 		this.resultado = oddsSuperCup.getResultado();
+		this.data = oddsSuperCup.getData();
+		this.percentual = oddsSuperCup.getPercentual();
+		this.data = oddsSuperCup.getData();
+		this.ano = oddsSuperCup.getAno();
+		this.minuto = oddsSuperCup.getMinuto();
+		this.hora = oddsSuperCup.getHora();
+		this.dataCompleta = oddsSuperCup.getData() + "/" + oddsSuperCup.getAno();
+		this.resultadoTipo = oddsSuperCup.getResultadoTipo();
+		
+	}
+	
+	
+	public OddsDTO(OddsPremierCup oddsPremierCup){
+		
+		this.Id = oddsPremierCup.getId();
+		this.timeCasa = oddsPremierCup.getTimeCasa();
+		this.timeVisitante = oddsPremierCup.getTimeVisitante();
+		this.jogo = oddsPremierCup.getTimeCasa() + " vs " + oddsPremierCup.getTimeVisitante();
+ 		this.resultado = oddsPremierCup.getResultado();
+		this.data = oddsPremierCup.getData();
+		this.percentual = oddsPremierCup.getPercentual();
+		this.data = oddsPremierCup.getData();
+		this.ano = oddsPremierCup.getAno();
+		this.minuto = oddsPremierCup.getMinuto();
+		this.hora = oddsPremierCup.getHora();
+		this.dataCompleta = oddsPremierCup.getData() + "/" + oddsPremierCup.getAno();
+		this.resultadoTipo = oddsPremierCup.getResultadoTipo();
+		
+	}
+	
+	
+public OddsDTO(OddsWorldCup oddsWorldCup){
+		
+		this.Id = oddsWorldCup.getId();
+		this.timeCasa = oddsWorldCup.getTimeCasa();
+		this.timeVisitante = oddsWorldCup.getTimeVisitante();
+		this.jogo = oddsWorldCup.getTimeCasa() + " vs " + oddsWorldCup.getTimeVisitante();
+ 		this.resultado = oddsWorldCup.getResultado();
+		this.data = oddsWorldCup.getData();
+		this.percentual = oddsWorldCup.getPercentual();
+		this.data = oddsWorldCup.getData();
+		this.ano = oddsWorldCup.getAno();
+		this.minuto = oddsWorldCup.getMinuto();
+		this.hora = oddsWorldCup.getHora();
+		this.dataCompleta = oddsWorldCup.getData() + "/" + oddsWorldCup.getAno();
+		this.resultadoTipo = oddsWorldCup.getResultadoTipo();
+		
+	}
+	
+	public static List<OddsDTO> converterToEuroCup(List<OddsEuroCup> resultados) {
+		return resultados.stream().map(OddsDTO::new).collect(Collectors.toList());
+	}
+	
+	public static List<OddsDTO> converterToSuperCup(List<OddsSuperCup> resultados) {
+		return resultados.stream().map(OddsDTO::new).collect(Collectors.toList());
 	}
 
+	public static List<OddsDTO> converterToPremierCup(List<OddsPremierCup> resultados) {
+		return resultados.stream().map(OddsDTO::new).collect(Collectors.toList());
+	}
+	
+	public static List<OddsDTO> converterToWorldCup(List<OddsWorldCup> resultados) {
+		return resultados.stream().map(OddsDTO::new).collect(Collectors.toList());
+	}
 }
