@@ -1,6 +1,7 @@
 package br.casaaposta.main.controllers;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -59,6 +60,39 @@ public class ResultadoController {
 
 		return new ResponseEntity<>(TipoResultadoDTO.converter(resultsTypes), HttpStatus.OK);
 		
+	}
+	
+	@GetMapping(value = "findJogo/{timeCasa}/{timeVisitante}")
+	public ResponseEntity<List<ResultadoDTO>> findJogo(@PathVariable String timeCasa, String timeVisitante) {
+		List<Resultado> results = resultadoRepoRespository_.findByTimeCasaAndTimeVisitanteOrderByResultadoTipoAsc(timeCasa, timeVisitante);
+
+		return new ResponseEntity<>(ResultadoDTO.converter(results), HttpStatus.OK);
+
+	}
+	
+	
+	@GetMapping(value = "findResultsByTimeCasa/{timeCasa}")
+	public ResponseEntity<List<ResultadoDTO>> findResultsByTimeCasa(@PathVariable String timeCasa) {
+		List<Resultado> results = resultadoRepoRespository_.findByTimeCasaOrderByResultadoTipoAsc(timeCasa);
+
+		return new ResponseEntity<>(ResultadoDTO.converter(results), HttpStatus.OK);
+
+	}
+	
+	@GetMapping(value = "findResultsByTimeVisitante/{timeVisitante}")
+	public ResponseEntity<List<ResultadoDTO>> findResultsByTimeVisitante(@PathVariable String timeVisitante) {
+		List<Resultado> results = resultadoRepoRespository_.findByTimeVisitanteOrderByResultadoTipoAsc(timeVisitante);
+
+		return new ResponseEntity<>(ResultadoDTO.converter(results), HttpStatus.OK);
+
+	}
+	
+	@GetMapping(value = "findResultsByHora/{hora}")
+	public ResponseEntity<List<ResultadoDTO>> findResultsByHora(@PathVariable String hora) {
+		List<Resultado> results = resultadoRepoRespository_.findByHoraOrderByResultadoTipoAsc(hora);
+
+		return new ResponseEntity<>(ResultadoDTO.converter(results), HttpStatus.OK);
+
 	}
 
 }

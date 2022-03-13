@@ -18,6 +18,13 @@ public interface ResultadoRepository extends JpaRepository<Resultado, Long>{
 	
 	List<Resultado> findByResultadoTipoOrderByResultadoTipoAsc(String resultadoTipo);
 	
+	List<Resultado> findByTimeCasaAndTimeVisitanteOrderByResultadoTipoAsc(String timeCasa, String timeVisitante);
+	
+	List<Resultado> findByTimeVisitanteOrderByResultadoTipoAsc(String timeVisitante);
+	
+	List<Resultado> findByTimeCasaOrderByResultadoTipoAsc(String timeVisitante);
+	
+	List<Resultado> findByHoraOrderByResultadoTipoAsc(String hora);
 		
 	}
 

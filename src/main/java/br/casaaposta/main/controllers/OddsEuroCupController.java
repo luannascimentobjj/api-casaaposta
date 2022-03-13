@@ -71,4 +71,12 @@ public class OddsEuroCupController {
 		return new ResponseEntity<>(OddsDTO.converterToEuroCup(results), HttpStatus.OK);
 
 	}
+	
+	@GetMapping(value = "findJogo/{timeCasa}/{timeVisitante}")
+	public ResponseEntity<List<OddsDTO>> findJogo(@PathVariable String timeCasa, String timeVisitante) {
+		List<OddsEuroCup> results = oddsEuroCupRepository_.findByTimeCasaAndTimeVisitanteOrderByResultadoTipoAsc(timeCasa, timeVisitante);
+
+		return new ResponseEntity<>(OddsDTO.converterToEuroCup(results), HttpStatus.OK);
+
+	}
 }

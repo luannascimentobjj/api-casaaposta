@@ -44,7 +44,7 @@ public class OddsPremierCupController {
 	@GetMapping(value = "findByType/{type}")
 	public ResponseEntity<List<OddsDTO>> findResultsByType(@PathVariable String type) {
 		List<OddsPremierCup> results = oddsPremierCupRepository_.findByResultadoTipoOrderByResultadoTipoAsc(type);
-
+		
 		return new ResponseEntity<>(OddsDTO.converterToPremierCup(results), HttpStatus.OK);
 
 	}
