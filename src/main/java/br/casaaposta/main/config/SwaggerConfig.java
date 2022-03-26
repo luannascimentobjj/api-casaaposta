@@ -44,7 +44,7 @@ public class SwaggerConfig implements WebMvcConfigurer{
 
         return new ApiInfoBuilder()
                 .title("Swagger API Doc")
-                .description("More description about the API")
+                .description("Api Xperts")
                 .version("1.0.0")
                 .build();
     }

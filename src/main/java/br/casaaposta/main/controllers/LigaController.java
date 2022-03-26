@@ -9,9 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.casaaposta.main.dto.LigaDTO;
 import br.casaaposta.main.repository.consumer.LigaRepository;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/ligas")
+@Api(value ="Liga")
+@ApiOperation(value ="Busca todas as ligas.")
 public class LigaController {
 	
 	@Autowired
