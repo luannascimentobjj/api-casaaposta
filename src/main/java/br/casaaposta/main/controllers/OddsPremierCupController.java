@@ -9,12 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import br.casaaposta.main.dto.OddsDTO;
 import br.casaaposta.main.entity.consumer.OddsPremierCup;
 import br.casaaposta.main.repository.consumer.OddsPremierCupRepository;
 
-@Controller
+@RestController
 @RequestMapping("/oddsPremierCup")
 public class OddsPremierCupController {
 
