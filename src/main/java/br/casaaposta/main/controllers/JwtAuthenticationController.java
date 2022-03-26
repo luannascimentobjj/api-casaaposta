@@ -17,11 +17,9 @@ import br.casaaposta.main.model.JwtRequest;
 import br.casaaposta.main.model.JwtResponse;
 import br.casaaposta.main.service.JwtUserDetailsService;
 import br.casaaposta.main.util.JwtTokenUtil;
-import io.swagger.annotations.Api;
 
 @RestController
 @CrossOrigin
-@Api(value ="Authentication")
 public class JwtAuthenticationController {
 
 	@Autowired
