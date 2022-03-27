@@ -17,9 +17,11 @@ import br.casaaposta.main.entity.consumer.Resultado;
 import br.casaaposta.main.entity.consumer.TipoResultado;
 import br.casaaposta.main.repository.consumer.ResultadoRepository;
 import br.casaaposta.main.repository.consumer.TipoResultadoRepository;
+import io.swagger.annotations.Api;
 
 @RestController
 @RequestMapping("/resultados")
+@Api(tags = "Resultado")
 public class ResultadoController {
 
 	@Autowired

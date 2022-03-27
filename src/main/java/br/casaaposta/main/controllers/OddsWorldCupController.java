@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 import br.casaaposta.main.dto.OddsDTO;
 import br.casaaposta.main.entity.consumer.OddsWorldCup;
 import br.casaaposta.main.repository.consumer.OddsWorldCupRepository;
+import io.swagger.annotations.Api;
 
 
 
 @RestController
 @RequestMapping("/oddsWorldCup")
+@Api(tags = "OddsWorldCup")
 public class OddsWorldCupController {
 	
 	@Autowired

@@ -24,9 +24,11 @@ import br.casaaposta.main.entity.api.Metodo;
 import br.casaaposta.main.form.AtualizaMetodoForm;
 import br.casaaposta.main.form.MetodoForm;
 import br.casaaposta.main.repository.api.MetodoRespository;
+import io.swagger.annotations.Api;
 
 @RestController
 @RequestMapping("/metodos")
+@Api(tags = "Metodo")
 public class MetodoController {
 
 	@Autowired

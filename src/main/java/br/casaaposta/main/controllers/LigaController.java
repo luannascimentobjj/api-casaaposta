@@ -9,9 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.casaaposta.main.dto.LigaDTO;
 import br.casaaposta.main.repository.consumer.LigaRepository;
+import io.swagger.annotations.Api;
 
 @RestController
 @RequestMapping("/ligas")
+@Api(tags = "Liga")
+
 public class LigaController {
 	
 	@Autowired
