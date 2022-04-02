@@ -1,57 +1,59 @@
 package br.casaaposta.main.form;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-
+import java.util.Optional;
+import javax.validation.constraints.NotBlank;
+import org.springframework.stereotype.Component;
 import br.casaaposta.main.entity.api.Metodo;
-import br.casaaposta.main.repository.api.MetodoRespository;
 import lombok.Data;
 
 @Data
+@Component
 public class AtualizaMetodoForm {
 
 
-    @NotNull @NotEmpty
+	@NotBlank(message = "O campo metodo é obrigatório!")
     private String metodo;
 
-    @NotNull @NotEmpty
+	@NotBlank(message = "O campo equipeCasa é obrigatório!")
     private String equipeCasa;
 
-    @NotNull @NotEmpty
+	@NotBlank(message = "O campo equipeVisitante é obrigatório!")
     private String equipeVisitante;
 
-    @NotNull @NotEmpty
+	@NotBlank(message = "O campo mercado é obrigatório!")
     private String mercado;
 
-    @NotNull @NotEmpty
+	@NotBlank(message = "O campo odds é obrigatório!")
     private String odds;
 
-    @NotNull @NotEmpty
+	@NotBlank(message = "O campo liga é obrigatório!")
     private String liga;
 
-    @NotNull @NotEmpty
+	@NotBlank(message = "O campo entradas é obrigatório!")
     private String entradas;
 
-    @NotNull @NotEmpty
+	@NotBlank(message = "O campo resultados é obrigatório!")
     private String resultados;
 
-    @NotNull @NotEmpty
+	@NotBlank(message = "O campo hora é obrigatório!")
     private String hora;
 
-    @NotNull @NotEmpty
+	@NotBlank(message = "O campo data é obrigatório!")
     private String data;
 
-    public Metodo atualizar (Long id, MetodoRespository metodoRepository_){
-    	Metodo met = metodoRepository_.getById(id);
-    	met.setMetodo(this.metodo);
-    	met.setEquipeCasa(this.equipeCasa);
-    	met.setEquipeVisitante(this.equipeVisitante);
-    	met.setMercado(this.mercado);
-    	met.setOdds(this.odds);
-    	met.setLiga(this.liga);
-    	met.setEntradas(this.entradas);
-    	met.setResultados(this.resultados);
-    	met.setHora(this.hora);
-    	met.setData(this.data);
+    public Metodo atualizar (Optional<Metodo> optMetodo, AtualizaMetodoForm form){
+    	
+    	
+    	optMetodo.get().setMetodo(form.metodo);
+    	optMetodo.get().setEquipeCasa(form.equipeCasa);
+    	optMetodo.get().setEquipeVisitante(form.equipeVisitante);
+    	optMetodo.get().setMercado(form.mercado);
+    	optMetodo.get().setOdds(form.odds);
+    	optMetodo.get().setLiga(form.liga);
+    	optMetodo.get().setEntradas(form.entradas);
+    	optMetodo.get().setResultados(form.resultados);
+    	optMetodo.get().setHora(form.hora);
+    	optMetodo.get().setData(form.data);
+    	Metodo  met = optMetodo.get();
     	return met;
     }
 	

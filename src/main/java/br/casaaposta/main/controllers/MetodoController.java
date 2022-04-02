@@ -72,9 +72,10 @@ public class MetodoController {
 
 	@PutMapping("/{id}")
 	public ResponseEntity<MetodoDTO> atualizar(@PathVariable Long id, @RequestBody @Valid AtualizaMetodoForm form) {
-		Optional<Metodo> optional = metodoRepository_.findById(id);
-		if (optional.isPresent()) {
-			Metodo metodo = form.atualizar(id, metodoRepository_);
+		Optional<Metodo> optMetodo = metodoRepository_.findById(id);
+		if (optMetodo.isPresent()) {
+			Metodo metodo = form.atualizar(optMetodo, form);
+			metodoRepository_.save(metodo);
 			return ResponseEntity.ok(new MetodoDTO(metodo));
 		}
 
