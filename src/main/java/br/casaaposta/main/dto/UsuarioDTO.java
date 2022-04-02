@@ -27,6 +27,10 @@ public class UsuarioDTO {
 		
 	}
 	
+	public UsuarioDTO() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public static List<UsuarioDTO> converter(List<Usuario> users) {
 		return users.stream().map(UsuarioDTO::new).collect(Collectors.toList());
 	}

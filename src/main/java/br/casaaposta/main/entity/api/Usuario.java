@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import br.casaaposta.main.form.UsuarioForm;
 import lombok.Data;
 
 @Entity
@@ -25,4 +28,18 @@ public class Usuario {
 	private String senha;
 	private boolean isAdmin;
 	private LocalDateTime dataInclusaoRegistro;
+	
+	
+	
+	public Usuario(UsuarioForm usuario, PasswordEncoder enconder) {
+		this.usuario = usuario.getUsuario();
+		this.senha = enconder.encode(usuario.getSenha());
+		this.isAdmin = usuario.isAdmin();
+		this.dataInclusaoRegistro = LocalDateTime.now();
+	}
+	
+	public Usuario() {
+		
+	}
+	
 }
