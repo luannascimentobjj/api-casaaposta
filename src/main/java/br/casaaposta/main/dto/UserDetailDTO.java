@@ -1,4 +1,4 @@
-package br.casaaposta.main.form;
+package br.casaaposta.main.dto;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -10,14 +10,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import br.casaaposta.main.entity.api.Usuario;
 
-public class UserDetail implements UserDetails {
+public class UserDetailDTO implements UserDetails {
 
 	@Autowired
 	private final Optional<Usuario> usuarioEntity_;
 
 	private static final long serialVersionUID = -7634559071782723765L;
 
-	public UserDetail(Optional<Usuario> usuario) {
+	public UserDetailDTO(Optional<Usuario> usuario) {
 		this.usuarioEntity_ = usuario;
 		
 	}

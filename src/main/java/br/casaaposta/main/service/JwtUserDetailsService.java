@@ -8,8 +8,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import br.casaaposta.main.dto.UserDetailDTO;
 import br.casaaposta.main.entity.api.Usuario;
-import br.casaaposta.main.form.UserDetail;
 import br.casaaposta.main.repository.api.UsuarioRepository;
 
 @Service
@@ -27,7 +27,7 @@ public class JwtUserDetailsService implements UserDetailsService{
 			throw new UsernameNotFoundException("Usuário [" + usuario + "] não encontrado");
 		}
 		
-		return new UserDetail(usuario);
+		return new UserDetailDTO(usuario);
 	
 		}
 	}
