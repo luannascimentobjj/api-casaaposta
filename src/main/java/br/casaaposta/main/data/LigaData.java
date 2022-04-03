@@ -4,11 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import br.casaaposta.main.entity.consumer.Liga;
 import br.casaaposta.main.interfaces.LigaDataInterface;
 import br.casaaposta.main.repository.consumer.LigaRepository;
 
+
+@Component
 public class LigaData implements LigaDataInterface{
 
 	

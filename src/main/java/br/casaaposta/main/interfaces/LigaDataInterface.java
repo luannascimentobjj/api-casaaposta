@@ -9,6 +9,5 @@ public interface LigaDataInterface {
 
 	public Optional<Liga> findByCodLiga(String codLiga);
 	
-	
-	List<Liga> findAll();
+		List<Liga> findAll();
 }

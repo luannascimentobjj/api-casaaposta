@@ -11,7 +11,7 @@ import br.casaaposta.main.entity.api.Metodo;
 public interface MetodoRespository extends JpaRepository<Metodo, Long>{
 	
 	@Query("Select m from Metodo m where m.id = :metodoDTO")
-	Optional<Metodo> findBy(MetodoDTO metodoDTO);
+	Optional<Metodo> findByMetodo(MetodoDTO metodoDTO);
 
 	
 

@@ -23,7 +23,7 @@ import br.casaaposta.main.entity.api.Log;
 import br.casaaposta.main.entity.api.Metodo;
 import br.casaaposta.main.form.AtualizaMetodoForm;
 import br.casaaposta.main.form.MetodoForm;
-import br.casaaposta.main.repository.api.MetodoRespository;
+import br.casaaposta.main.interfaces.MetodoDataInterface;
 import io.swagger.annotations.Api;
 
 @RestController
@@ -32,7 +32,7 @@ import io.swagger.annotations.Api;
 public class MetodoController {
 
 	@Autowired
-	private MetodoRespository metodoRepository_;
+	private MetodoDataInterface metodoData_;
 	private Log logger_ = new Log();
 
 	@PostMapping
@@ -41,7 +41,7 @@ public class MetodoController {
 		try {
 
 			Metodo metodo = form.converter(form);
-			metodoRepository_.save(metodo);
+			metodoData_.save(metodo);
 			URI uri = uriBuilder.path("/metodos/{id}").buildAndExpand(metodo.getId()).toUri();
 			return ResponseEntity.created(uri).body(new MetodoDTO(metodo));
 
@@ -56,9 +56,9 @@ public class MetodoController {
 
 		try {
 
-			Optional<Metodo> optional = metodoRepository_.findById(id);
+			Optional<Metodo> optional = metodoData_.findById(id);
 			if (optional.isPresent()) {
-				metodoRepository_.deleteById(id);
+				metodoData_.deleteById(id);
 				return ResponseEntity.ok().build();
 			}
 
@@ -72,10 +72,10 @@ public class MetodoController {
 
 	@PutMapping("/{id}")
 	public ResponseEntity<MetodoDTO> atualizar(@PathVariable Long id, @RequestBody @Valid AtualizaMetodoForm form) {
-		Optional<Metodo> optMetodo = metodoRepository_.findById(id);
+		Optional<Metodo> optMetodo = metodoData_.findById(id);
 		if (optMetodo.isPresent()) {
 			Metodo metodo = form.atualizar(optMetodo, form);
-			metodoRepository_.save(metodo);
+			metodoData_.save(metodo);
 			return ResponseEntity.ok(new MetodoDTO(metodo));
 		}
 
@@ -85,7 +85,7 @@ public class MetodoController {
 	@GetMapping()
 	public ResponseEntity<List<MetodoDTO>> buscarMetodos() {
 
-		List<Metodo> metodos = metodoRepository_.findAll();
+		List<Metodo> metodos = metodoData_.findAll();
 		return ResponseEntity.ok(MetodoDTO.converter(metodos));
 
 	}
