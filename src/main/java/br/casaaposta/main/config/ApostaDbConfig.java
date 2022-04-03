@@ -23,9 +23,9 @@ public class ApostaDbConfig {
 	@Profile("dev")
 	DataSource consumerDataSource() {
 
-		return DataSourceBuilder.create().username(BDPropertiesUtil.LOCAL_USERNAME_APOSTA)
-				.password(BDPropertiesUtil.LOCAL_PASSWORD_APOSTA).url(BDPropertiesUtil.LOCAL_URL_APOSTA)
-				.driverClassName(BDPropertiesUtil.LOCAL_DRIVERCLASSNAME_APOSTA).build();
+		return DataSourceBuilder.create().username(BDPropertiesUtil.PROD_USERNAME_APOSTA)
+				.password(BDPropertiesUtil.PROD_PASSWORD_APOSTA).url(BDPropertiesUtil.PROD_URL_APOSTA)
+				.driverClassName(BDPropertiesUtil.DRIVERCLASSNAME_MYSQL).build();
 
 	}
 

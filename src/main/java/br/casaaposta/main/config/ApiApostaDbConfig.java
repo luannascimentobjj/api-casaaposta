@@ -30,10 +30,10 @@ public class ApiApostaDbConfig {
 
 				return DataSourceBuilder
 				.create()
-				.username(BDPropertiesUtil.LOCAL_USERNAME_API_APOSTA)
-				.password(BDPropertiesUtil.LOCAL_PASSWORD_API_APOSTA)
-				.url(BDPropertiesUtil.LOCAL_URL_API_APOSTA)
-				.driverClassName(BDPropertiesUtil.LOCAL_DRIVERCLASSNAME_API_APOSTA)
+				.username(BDPropertiesUtil.PROD_USERNAME_API_APOSTA)
+				.password(BDPropertiesUtil.PROD_PASSWORD_API_APOSTA)
+				.url(BDPropertiesUtil.PROD_URL_API_APOSTA)
+				.driverClassName(BDPropertiesUtil.DRIVERCLASSNAME_MYSQL)
 				.build();
 				
 

@@ -13,7 +13,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "Liga")
+@Table(name = "liga")
 @NoArgsConstructor
 @Data
 public class Liga implements Serializable {
