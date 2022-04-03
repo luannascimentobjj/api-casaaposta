@@ -16,4 +16,6 @@ public interface OddsSuperCupDataInterface {
 
 	List<OddsSuperCup> findByHoraOrderByResultadoTipoAsc(String hora);
 	
+	List<OddsSuperCup> findAll();
+	
 }

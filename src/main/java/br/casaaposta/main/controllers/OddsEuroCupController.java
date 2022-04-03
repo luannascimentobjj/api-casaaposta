@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.casaaposta.main.data.OddsEuroCupData;
 import br.casaaposta.main.dto.OddsDTO;
 import br.casaaposta.main.entity.consumer.OddsEuroCup;
+import br.casaaposta.main.interfaces.OddsEuroCupDataInterface;
 import io.swagger.annotations.Api;
 
 @RestController
@@ -21,7 +21,7 @@ import io.swagger.annotations.Api;
 public class OddsEuroCupController {
 
 	@Autowired
-	private OddsEuroCupData oddsEuroCupData_;
+	private OddsEuroCupDataInterface oddsEuroCupData_;
 		
 	
 	@GetMapping(value = "findOdds/")
@@ -36,7 +36,8 @@ public class OddsEuroCupController {
 	
 	@GetMapping(value = "findByDate/{date}")
 	public ResponseEntity<List<OddsDTO>> findResultsByData(@PathVariable String date) {
-		List<OddsEuroCup> results = oddsEuroCupData_.findByDataOrderByResultadoTipoAsc(date.replace("-", "/"));
+		
+		List<OddsEuroCup> results = oddsEuroCupData_.findByDataOrderByResultadoTipoAsc(date);
 
 		return new ResponseEntity<>(OddsDTO.converterToEuroCup(results), HttpStatus.OK);
 

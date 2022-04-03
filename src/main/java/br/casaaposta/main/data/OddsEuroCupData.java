@@ -15,14 +15,6 @@ public class OddsEuroCupData implements OddsEuroCupDataInterface {
 	@Autowired
 	private OddsEuroCupRepository oddsEuroCupRepository_;
 
-	@Deprecated
-	@Override
-	public OddsEuroCup findByTollTipAndMinutoAndHoraAndResultadoTipo(String toolTip, int minuto, int hora,
-			String resultadoTipo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	@Override
 	public List<OddsEuroCup> findByDataOrderByResultadoTipoAsc(String date) {
 

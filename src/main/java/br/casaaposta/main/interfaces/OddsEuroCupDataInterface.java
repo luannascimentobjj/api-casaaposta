@@ -6,8 +6,7 @@ import br.casaaposta.main.entity.consumer.OddsEuroCup;
 
 public interface OddsEuroCupDataInterface {
 
-	OddsEuroCup findByTollTipAndMinutoAndHoraAndResultadoTipo(String toolTip, int minuto, int hora, String resultadoTipo);
-	
+
 	List<OddsEuroCup> findByDataOrderByResultadoTipoAsc(String data);
 	
 	List<OddsEuroCup> findByResultadoTipoOrderByResultadoTipoAsc(String resultadoTipo);
