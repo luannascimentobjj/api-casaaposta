@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.casaaposta.main.dto.OddsDTO;
 import br.casaaposta.main.entity.consumer.OddsWorldCup;
-import br.casaaposta.main.repository.consumer.OddsWorldCupRepository;
+import br.casaaposta.main.interfaces.OddsWorldCupDataInterface;
 import io.swagger.annotations.Api;
 
 
@@ -23,14 +23,14 @@ import io.swagger.annotations.Api;
 public class OddsWorldCupController {
 	
 	@Autowired
-	private OddsWorldCupRepository oddsWorldCupRepository_;
+	private OddsWorldCupDataInterface oddsWorldCupData_;
 	
 
 	
 	@GetMapping(value = "findOdds")
 	public ResponseEntity<List<OddsDTO>> findOddsWorldCup() {
 
-		List<OddsWorldCup> resultados = oddsWorldCupRepository_.findAll();
+		List<OddsWorldCup> resultados = oddsWorldCupData_.findAll();
 
 		return new ResponseEntity<>(OddsDTO.converterToWorldCup(resultados), HttpStatus.OK);
 
@@ -38,7 +38,7 @@ public class OddsWorldCupController {
 	
 	@GetMapping(value = "findByDate/{date}")
 	public ResponseEntity<List<OddsDTO>> findResultsByData(@PathVariable String date) {
-		List<OddsWorldCup> results = oddsWorldCupRepository_.findByDataOrderByResultadoTipoAsc(date.replace("-", "/"));
+		List<OddsWorldCup> results = oddsWorldCupData_.findByDataOrderByResultadoTipoAsc(date);
 
 		return new ResponseEntity<>(OddsDTO.converterToWorldCup(results), HttpStatus.OK);
 
@@ -46,7 +46,7 @@ public class OddsWorldCupController {
 	
 	@GetMapping(value = "findByType/{type}")
 	public ResponseEntity<List<OddsDTO>> findResultsByType(@PathVariable String type) {
-		List<OddsWorldCup> results = oddsWorldCupRepository_.findByResultadoTipoOrderByResultadoTipoAsc(type);
+		List<OddsWorldCup> results = oddsWorldCupData_.findByResultadoTipoOrderByResultadoTipoAsc(type);
 
 		return new ResponseEntity<>(OddsDTO.converterToWorldCup(results), HttpStatus.OK);
 
@@ -54,7 +54,7 @@ public class OddsWorldCupController {
 	
 	@GetMapping(value = "findResultsByTimeCasa/{timeCasa}")
 	public ResponseEntity<List<OddsDTO>> findResultsByTimeCasa(@PathVariable String timeCasa) {
-		List<OddsWorldCup> results = oddsWorldCupRepository_.findByTimeCasaOrderByResultadoTipoAsc(timeCasa);
+		List<OddsWorldCup> results = oddsWorldCupData_.findByTimeCasaOrderByResultadoTipoAsc(timeCasa);
 
 		return new ResponseEntity<>(OddsDTO.converterToWorldCup(results), HttpStatus.OK);
 
@@ -62,7 +62,7 @@ public class OddsWorldCupController {
 	
 	@GetMapping(value = "findResultsByTimeVisitante/{timeVisitante}")
 	public ResponseEntity<List<OddsDTO>> findResultsByTimeVisitante(@PathVariable String timeVisitante) {
-		List<OddsWorldCup> results = oddsWorldCupRepository_.findByTimeVisitanteOrderByResultadoTipoAsc(timeVisitante);
+		List<OddsWorldCup> results = oddsWorldCupData_.findByTimeVisitanteOrderByResultadoTipoAsc(timeVisitante);
 
 		return new ResponseEntity<>(OddsDTO.converterToWorldCup(results), HttpStatus.OK);
 
@@ -70,7 +70,7 @@ public class OddsWorldCupController {
 	
 	@GetMapping(value = "findResultsByHora/{hora}")
 	public ResponseEntity<List<OddsDTO>> findResultsByHora(@PathVariable String hora) {
-		List<OddsWorldCup > results = oddsWorldCupRepository_.findByHoraOrderByResultadoTipoAsc(hora);
+		List<OddsWorldCup > results = oddsWorldCupData_.findByHoraOrderByResultadoTipoAsc(hora);
 
 		return new ResponseEntity<>(OddsDTO.converterToWorldCup(results), HttpStatus.OK);
 

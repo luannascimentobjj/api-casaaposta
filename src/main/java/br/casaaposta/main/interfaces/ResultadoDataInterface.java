@@ -7,8 +7,7 @@ import br.casaaposta.main.entity.consumer.Resultado;
 
 public interface ResultadoDataInterface {
 
-	Resultado findByTollTipAndMinutoAndHoraAndResultadoTipo(String toolTip, int minuto, int hora, String resultadoTipo);
-	
+		
 	List<Resultado> findByCodLigaOrderByResultadoTipoAsc(Liga liga);
 	
 	List<Resultado> findByDataOrderByResultadoTipoAsc(String data);
@@ -22,6 +21,7 @@ public interface ResultadoDataInterface {
 	List<Resultado> findByTimeCasaOrderByResultadoTipoAsc(String timeVisitante);
 	
 	List<Resultado> findByHoraOrderByResultadoTipoAsc(String hora);
+	
 	
 	
 }

@@ -15,5 +15,7 @@ public interface OddsWorldCupDataInterface {
 	List<OddsWorldCup> findByTimeCasaOrderByResultadoTipoAsc(String timeVisitante);
 
 	List<OddsWorldCup> findByHoraOrderByResultadoTipoAsc(String hora);
+	
+	List<OddsWorldCup> findAll();
 
 }

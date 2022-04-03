@@ -23,7 +23,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import br.casaaposta.main.dto.UsuarioDTO;
 import br.casaaposta.main.entity.api.Usuario;
 import br.casaaposta.main.form.UsuarioForm;
-import br.casaaposta.main.repository.api.UsuarioRepository;
+import br.casaaposta.main.interfaces.UsuarioDataInterface;
 import io.swagger.annotations.Api;
 
 @RestController
@@ -32,17 +32,17 @@ import io.swagger.annotations.Api;
 public class UsuarioController {
 
 	@Autowired
-	private UsuarioRepository usuarioRepository_;
+	private UsuarioDataInterface usuarioData_;
 
 	@Autowired
 	private PasswordEncoder enconder;
 
-	@GetMapping("listarTodos")
+	@GetMapping("/listarTodos")
 	public ResponseEntity<List<UsuarioDTO>> listarUsuarios() {
 
 		try {
 
-			List<Usuario> users = usuarioRepository_.findAll();
+			List<Usuario> users = usuarioData_.findAll();
 			return ResponseEntity.ok(UsuarioDTO.converter(users));
 		} catch (Exception e) {
 
@@ -51,13 +51,13 @@ public class UsuarioController {
 
 	}
 
-	@PostMapping("salvar")
+	@PostMapping("/salvar")
 	public ResponseEntity<UsuarioDTO> salvar(@RequestBody @Valid UsuarioForm form, UriComponentsBuilder uriBuilder) {
 
 		try {
 
 			Usuario user = form.converter(form, enconder);
-			usuarioRepository_.save(user);
+			usuarioData_.save(user);
 			URI uri = uriBuilder.path("/usuario/{id}").buildAndExpand(user.getId()).toUri();
 			return ResponseEntity.created(uri).body(new UsuarioDTO(user));
 
@@ -67,12 +67,12 @@ public class UsuarioController {
 
 	}
 
-	@GetMapping("validarSenha")
+	@GetMapping("/validarSenha")
 	public ResponseEntity<Boolean> validarSenha(@RequestParam String usuario, @RequestParam String senha) {
 		
 		
 		
-		Optional<Usuario> user = usuarioRepository_.findByUsuario(usuario);
+		Optional<Usuario> user = usuarioData_.findByUsuario(usuario);
 		if(user.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(false);
 		}
@@ -90,9 +90,9 @@ public class UsuarioController {
 
 		try {
 
-			Optional<Usuario> optional = usuarioRepository_.findById(id);
+			Optional<Usuario> optional = usuarioData_.findById(id);
 			if (optional.isPresent()) {
-				usuarioRepository_.deleteById(id);
+				usuarioData_.deleteById(id);
 				return ResponseEntity.ok().build();
 			}
 

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import br.casaaposta.main.dto.OddsDTO;
 import br.casaaposta.main.entity.consumer.OddsSuperCup;
 import br.casaaposta.main.interfaces.OddsSuperCupDataInterface;
-import br.casaaposta.main.repository.consumer.OddsSuperCupRepository;
 import io.swagger.annotations.Api;
 
 @RestController
