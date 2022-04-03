@@ -20,4 +20,5 @@ public interface OddsEuroCupDataInterface {
 	
 	List<OddsEuroCup> findByTimeCasaAndTimeVisitanteOrderByResultadoTipoAsc(String timeCasa, String timeVisitante);
 	
+	List<OddsEuroCup> findAll();
 }
