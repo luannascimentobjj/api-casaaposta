@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.casaaposta.main.dto.LigaDTO;
-import br.casaaposta.main.repository.consumer.LigaRepository;
+import br.casaaposta.main.interfaces.LigaDataInterface;
 import io.swagger.annotations.Api;
 
 @RestController
@@ -16,16 +16,15 @@ import io.swagger.annotations.Api;
 @Api(tags = "Liga")
 
 public class LigaController {
+
 	
 	@Autowired
-	private LigaRepository ligaRepoRespository_;
-	
+	LigaDataInterface ligaData_;
 	
 	@GetMapping()
 	public List<LigaDTO> findLigas() {
-		
-		 
-		return LigaDTO.converter(ligaRepoRespository_.findAll());
+				 
+		return LigaDTO.converter(ligaData_.findAll());
 			
 
 	}
