@@ -146,4 +146,24 @@ public class OddsEuroCupBusiness implements OddsEuroCupBusinessInterface {
 
 	}
 
+	@Override
+	public List<OddsEuroCup> findByTollTipIsNotNull() throws Exception {
+		
+		try {
+			
+			return oddsEuroCupRepository_.findByTollTipIsNotNull();
+			
+		} catch (Exception e) {
+			
+			log.setStackTrace(e.getMessage());
+			log.setError("Erro ao executar o método, OddsEuroCupBusiness.findAll");
+			log.setDataInclusao(LocalDateTime.now());
+			logger_.save(log);
+			throw new Exception(e);
+		}
+		
+		
+		
+	}
+
 }

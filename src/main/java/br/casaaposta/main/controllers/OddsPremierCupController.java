@@ -36,8 +36,9 @@ public class OddsPremierCupController {
 		
 		try {
 			
-			List<OddsPremierCup> resultados = oddsPremierCupBusiness_.findAll();
-			return new ResponseEntity<>(OddsDTO.converterToPremierCup(resultados), HttpStatus.OK);
+			List<OddsPremierCup> resultados = oddsPremierCupBusiness_.findByTollTipIsNotNull();
+			return new ResponseEntity<>(OddsDTO.converterToPremierCup(resultados), HttpStatus.OK);			
+			
 
 		} catch (Exception e) {
 			

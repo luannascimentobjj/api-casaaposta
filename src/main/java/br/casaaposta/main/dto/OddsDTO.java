@@ -1,5 +1,6 @@
 package br.casaaposta.main.dto;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -129,7 +130,7 @@ public OddsDTO(OddsWorldCup oddsWorldCup){
 	}
 	
 	public static List<OddsDTO> converterToEuroCup(List<OddsEuroCup> resultados) {
-		return resultados.stream().map(OddsDTO::new).collect(Collectors.toList());
+			return resultados.stream().map(OddsDTO::new).collect(Collectors.toList());
 	}
 	
 	public static List<OddsDTO> converterToSuperCup(List<OddsSuperCup> resultados) {

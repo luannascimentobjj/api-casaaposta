@@ -20,4 +20,6 @@ public interface OddsSuperCupBusinessInterface {
 	
 	List<OddsSuperCup> findAll() throws Exception;
 	
+	List<OddsSuperCup> findByTollTipIsNotNull() throws Exception;
+	
 }

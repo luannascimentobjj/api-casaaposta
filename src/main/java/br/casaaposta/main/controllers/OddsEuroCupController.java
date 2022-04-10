@@ -36,7 +36,7 @@ public class OddsEuroCupController {
 		
 		try {
 			
-			List<OddsEuroCup> resultados = oddsEuroCupBusiness_.findAll();
+			List<OddsEuroCup> resultados = oddsEuroCupBusiness_.findByTollTipIsNotNull();
 
 			return new ResponseEntity<>(OddsDTO.converterToEuroCup(resultados), HttpStatus.OK);
 			

@@ -38,7 +38,7 @@ public class OddsWorldCupController {
 		
 		try {
 
-			List<OddsWorldCup> resultados = oddsWorldCupBusiness_.findAll();
+			List<OddsWorldCup> resultados = oddsWorldCupBusiness_.findByTollTipIsNotNull();
 			return new ResponseEntity<>(OddsDTO.converterToWorldCup(resultados), HttpStatus.OK);
 			
 		} catch (Exception e) {

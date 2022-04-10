@@ -20,4 +20,6 @@ public interface OddsEuroCupBusinessInterface {
 	List<OddsEuroCup> findByTimeCasaAndTimeVisitanteOrderByResultadoTipoAsc(String timeCasa, String timeVisitante) throws Exception;
 	
 	List<OddsEuroCup> findAll() throws Exception;
+	
+	List<OddsEuroCup> findByTollTipIsNotNull() throws Exception;
 }

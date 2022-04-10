@@ -149,4 +149,22 @@ public class OddsPremierCupBusiness implements OddsPremierCupBusinessInterface {
 	
 	}
 
+	@Override
+	public List<OddsPremierCup> findByTollTipIsNotNull() throws Exception {
+
+		try {
+			
+			return oddsPremierCupRepository_.findByTollTipIsNotNull();
+			
+		} catch (Exception e) {
+			
+			log.setStackTrace(e.getMessage());
+			log.setError("Erro ao executar o método, OddsPremierCupBusiness.findByTollTipIsNotNull");
+			log.setDataInclusao(LocalDateTime.now());
+			logger_.save(log);
+			throw new Exception(e);
+		}
+		
+	}
+
 }

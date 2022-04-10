@@ -153,4 +153,20 @@ public class OddsWorldCupBusiness implements OddsWorldCupBusinessInterface{
 		
 	}
 
+	@Override
+	public List<OddsWorldCup> findByTollTipIsNotNull() throws Exception {
+		try {
+			
+			return oddsWorldCupRepository_.findByTollTipIsNotNull();
+			
+		} catch (Exception e) {
+			
+			log.setStackTrace(e.getMessage());
+			log.setError("Erro ao executar o método, OddsWorldCupBusiness.findByTollTipIsNotNull");
+			log.setDataInclusao(LocalDateTime.now());
+			logger_.save(log);
+			throw new Exception(e);
+		}
+	}
+
 }

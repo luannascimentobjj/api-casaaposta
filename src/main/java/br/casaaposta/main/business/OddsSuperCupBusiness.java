@@ -155,4 +155,23 @@ public class OddsSuperCupBusiness implements OddsSuperCupBusinessInterface {
 		
 	}
 
+	@Override
+	public List<OddsSuperCup> findByTollTipIsNotNull() throws Exception {
+		
+		try {
+			
+			return oddsSuperCupRepository_.findByTollTipIsNotNull();
+			
+		} catch (Exception e) {
+			
+			log.setStackTrace(e.getMessage());
+			log.setError("Erro ao executar o método, OddsSuperCupBusiness.findByTollTipIsNotNull");
+			log.setDataInclusao(LocalDateTime.now());
+			logger_.save(log);
+			throw new Exception(e);
+		}
+		
+		
+	}
+
 }

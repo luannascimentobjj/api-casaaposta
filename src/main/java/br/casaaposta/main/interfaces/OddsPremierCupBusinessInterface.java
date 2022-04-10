@@ -20,4 +20,6 @@ public interface OddsPremierCupBusinessInterface {
 	List<OddsPremierCup> findByTimeCasaAndTimeVisitanteOrderByResultadoTipoAsc(String timeCasa, String timeVisitante) throws Exception;
 	
 	List<OddsPremierCup> findAll() throws Exception;
+	
+	List<OddsPremierCup> findByTollTipIsNotNull() throws Exception;
 }

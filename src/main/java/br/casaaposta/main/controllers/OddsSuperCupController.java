@@ -36,7 +36,7 @@ public class OddsSuperCupController {
 
 		try {
 			
-			List<OddsSuperCup> resultados = oddsSuperCupBusiness_.findAll();
+			List<OddsSuperCup> resultados = oddsSuperCupBusiness_.findByTollTipIsNotNull();
 			return new ResponseEntity<>(OddsDTO.converterToSuperCup(resultados), HttpStatus.OK);
 			
 		} catch (Exception e) {

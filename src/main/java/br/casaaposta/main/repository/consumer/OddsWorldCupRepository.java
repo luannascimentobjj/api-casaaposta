@@ -4,14 +4,12 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import br.casaaposta.main.entity.consumer.OddsEuroCup;
 import br.casaaposta.main.entity.consumer.OddsWorldCup;
 
 public interface OddsWorldCupRepository extends JpaRepository<OddsWorldCup, Long> {
 
-	OddsEuroCup findByTollTipAndMinutoAndHoraAndResultadoTipo(String toolTip, int minuto, int hora, String resultadoTipo);
+	OddsWorldCup findByTollTipAndMinutoAndHoraAndResultadoTipo(String toolTip, int minuto, int hora, String resultadoTipo);
 		
-	
 	List<OddsWorldCup> findByDataOrderByResultadoTipoAsc(String data);
 
 	List<OddsWorldCup> findByResultadoTipoOrderByResultadoTipoAsc(String resultadoTipo);
@@ -23,6 +21,8 @@ public interface OddsWorldCupRepository extends JpaRepository<OddsWorldCup, Long
 	List<OddsWorldCup> findByHoraOrderByResultadoTipoAsc(String hora);
 	
 	List<OddsWorldCup> findByTimeCasaAndTimeVisitanteOrderByResultadoTipoAsc(String timeCasa, String timeVisitante);
+	
+	List<OddsWorldCup> findByTollTipIsNotNull();
 	}
 	
 

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 import br.casaaposta.main.entity.api.Log;
 import br.casaaposta.main.entity.api.Usuario;
-import br.casaaposta.main.entity.consumer.Liga;
 import br.casaaposta.main.interfaces.UsuarioBusinessInterface;
 import br.casaaposta.main.repository.api.UsuarioRepository;
 
