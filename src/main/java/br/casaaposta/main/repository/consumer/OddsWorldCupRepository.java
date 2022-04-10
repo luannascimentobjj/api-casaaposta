@@ -21,6 +21,8 @@ public interface OddsWorldCupRepository extends JpaRepository<OddsWorldCup, Long
 	List<OddsWorldCup> findByTimeCasaOrderByResultadoTipoAsc(String timeVisitante);
 
 	List<OddsWorldCup> findByHoraOrderByResultadoTipoAsc(String hora);
+	
+	List<OddsWorldCup> findByTimeCasaAndTimeVisitanteOrderByResultadoTipoAsc(String timeCasa, String timeVisitante);
 	}
 	
 

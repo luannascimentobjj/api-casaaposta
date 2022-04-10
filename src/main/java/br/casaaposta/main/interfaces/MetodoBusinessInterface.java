@@ -5,16 +5,16 @@ import java.util.Optional;
 import br.casaaposta.main.dto.MetodoDTO;
 import br.casaaposta.main.entity.api.Metodo;
 
-public interface MetodoDataInterface {
+public interface MetodoBusinessInterface {
 
 	Metodo findByMetodo(MetodoDTO metodoDTO);
 	
-	void save(Metodo  metodo);
+	void save(Metodo  metodo) throws Exception;
 	
-	Optional<Metodo> findById(Long id);
+	Optional<Metodo> findById(Long id) throws Exception;
 	
-	List<Metodo> findAll();
+	List<Metodo> findAll() throws Exception;
 	
-	void deleteById(Long id);
+	void deleteById(Long id) throws Exception;
 	
 }

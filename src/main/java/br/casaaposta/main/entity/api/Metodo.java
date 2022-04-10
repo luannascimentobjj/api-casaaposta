@@ -36,30 +36,30 @@ public class Metodo {
 	}
 
 	public Metodo(MetodoForm metodoForm) {
-		this.metodo = metodoForm.getMetodo();
-		this.equipeCasa = metodoForm.getEquipeCasa();
-		this.equipeVisitante = metodoForm.getEquipeVisitante();
-		this.mercado = metodoForm.getMercado();
+		this.metodo = metodoForm.getMethod();
+		this.equipeCasa = metodoForm.getHomeTeam();
+		this.equipeVisitante = metodoForm.getVisitingTeam();
+		this.mercado = metodoForm.getMarket();
 		this.odds = metodoForm.getOdds();
-		this.liga = metodoForm.getLiga();
-		this.entradas = metodoForm.getEntradas();
-		this.resultados = metodoForm.getResultados();
-		this.hora = metodoForm.getHora();
-		this.data = metodoForm.getData();
+		this.liga = metodoForm.getLeague();
+		this.entradas = metodoForm.getBets();
+		this.resultados = metodoForm.getResults();
+		this.hora = metodoForm.getHour();
+		this.data = metodoForm.getDate();
 
 	}
 
 	public Metodo(AtualizaMetodoForm metodoForm) {
-		this.metodo = metodoForm.getMetodo();
-		this.equipeCasa = metodoForm.getEquipeCasa();
-		this.equipeVisitante = metodoForm.getEquipeVisitante();
-		this.mercado = metodoForm.getMercado();
+		this.metodo = metodoForm.getMethod();
+		this.equipeCasa = metodoForm.getHomeTeam();
+		this.equipeVisitante = metodoForm.getVisitingTeam();
+		this.mercado = metodoForm.getMarket();
 		this.odds = metodoForm.getOdds();
-		this.liga = metodoForm.getLiga();
-		this.entradas = metodoForm.getEntradas();
-		this.resultados = metodoForm.getResultados();
-		this.hora = metodoForm.getHora();
-		this.data = metodoForm.getData();
+		this.liga = metodoForm.getLeague();
+		this.entradas = metodoForm.getBets();
+		this.resultados = metodoForm.getResults();
+		this.hora = metodoForm.getHour();
+		this.data = metodoForm.getDate();
 
 	}
 

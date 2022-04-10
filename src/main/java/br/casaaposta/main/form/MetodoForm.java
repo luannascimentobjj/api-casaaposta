@@ -12,35 +12,35 @@ import org.springframework.stereotype.Component;
 @Component
 public class MetodoForm {
 
-    @NotBlank(message = "O campo metodo é obrigatório!")
-    private String metodo;
+	@NotBlank(message = "The method field is required!")
+    private String method;
 
-    @NotBlank(message = "O campo equipeCasa é obrigatório!")
-    private String equipeCasa;
+	@NotBlank(message = "The homeTeam field is required!")
+    private String homeTeam;
 
-    @NotBlank(message = "O campo equipeVisitante é obrigatório!")
-    private String equipeVisitante;
+	@NotBlank(message = "The visitingTeam field is required!")
+    private String visitingTeam;
 
-    @NotBlank(message = "O campo mercado é obrigatório!")
-    private String mercado;
+	@NotBlank(message = "The market field is required!")
+    private String market;
 
-    @NotBlank(message = "O campo odds é obrigatório!")
+	@NotBlank(message = "The odds field is required!")
     private String odds;
 
-    @NotBlank(message = "O campo liga é obrigatório!")
-    private String liga;
+	@NotBlank(message = "The league field is required!")
+    private String league;
 
-    @NotBlank(message = "O campo entradas é obrigatório!")
-    private String entradas;
+	@NotBlank(message = "The bets field is required!")
+    private String bets;
 
-    @NotBlank(message = "O campo resultados é obrigatório!")
-    private String resultados;
+	@NotBlank(message = "The method field is required!")
+    private String results;
 
-    @NotBlank(message = "O campo hora é obrigatório!")
-    private String hora;
+	@NotBlank(message = "The method field is required!")
+    private String hour;
 
-    @NotBlank(message = "O campo data é obrigatório!")
-    private String data;
+	@NotBlank(message = "The method field is required!")
+    private String date;
 
     public Metodo converter (MetodoForm metodo){
         return new Metodo(metodo);

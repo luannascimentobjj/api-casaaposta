@@ -14,7 +14,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import br.casaaposta.main.filter.JwtRequestFilter;
-import br.casaaposta.main.model.JwtAuthenticationEntryPoint;
 
 @Configuration
 @EnableWebSecurity

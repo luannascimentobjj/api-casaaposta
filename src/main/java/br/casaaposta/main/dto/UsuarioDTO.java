@@ -14,21 +14,26 @@ public class UsuarioDTO {
 	private Long id;
 	private String usuario;
 	private String senha;
+	private String email;
+	private String nome;
 	private boolean isAdmin;
 	private LocalDateTime dataInclusaoRegistro;
+	
 	
 	
 	public UsuarioDTO(Usuario usuario){
 		this.id = usuario.getId();
 		this.usuario = usuario.getUsuario();
 		this.senha = usuario.getSenha();
+		this.email = usuario.getEmail();
+		this.nome = usuario.getNome();
 		this.isAdmin = usuario.isAdmin();	
 		this.dataInclusaoRegistro = usuario.getDataInclusaoRegistro();
 		
 	}
 	
 	public UsuarioDTO() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public static List<UsuarioDTO> converter(List<Usuario> users) {

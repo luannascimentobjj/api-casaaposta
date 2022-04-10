@@ -21,6 +21,7 @@ public interface OddsPremierCupRepository extends JpaRepository<OddsPremierCup, 
 	
 	List<OddsPremierCup> findByHoraOrderByResultadoTipoAsc(String hora);
 	
+	List<OddsPremierCup> findByTimeCasaAndTimeVisitanteOrderByResultadoTipoAsc(String timeCasa, String timeVisitante);
 	}
 	
 

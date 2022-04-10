@@ -12,12 +12,16 @@ import lombok.Data;
 @Component
 public class UsuarioForm {
 	
-	@NotBlank(message = "O campo usuário é obrigatório!")
-	private String usuario;
-	@NotBlank(message = "O campo senha é obrigatório!")
-	private String senha;
-	@NotBlank(message = "O campo isAdmin é obrigatório!")
+	@NotBlank(message = "The user field is required!")
+	private String user;
+	@NotBlank(message = "The password field is required!")
+	private String password;
+	@NotBlank(message = "The isAdmin field is required!")
 	private boolean isAdmin;
+	@NotBlank(message = "The email field is required!")
+	private String email;
+	@NotBlank(message = "The name field is required!")
+	private String name;
 
 	
     public Usuario converter (UsuarioForm user, PasswordEncoder enconder){

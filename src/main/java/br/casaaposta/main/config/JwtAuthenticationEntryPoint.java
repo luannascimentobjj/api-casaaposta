@@ -1,4 +1,4 @@
-package br.casaaposta.main.model;
+package br.casaaposta.main.config;
 
 import java.io.IOException;
 import java.io.Serializable;

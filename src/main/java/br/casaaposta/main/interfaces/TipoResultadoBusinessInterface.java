@@ -4,8 +4,8 @@ import java.util.List;
 
 import br.casaaposta.main.entity.consumer.TipoResultado;
 
-public interface TipoResultadoDataInterface {
+public interface TipoResultadoBusinessInterface {
 
-	List<TipoResultado> findAll();
+	List<TipoResultado> findAll() throws Exception;
 	
 }

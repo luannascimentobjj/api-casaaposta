@@ -25,6 +25,9 @@ public class Usuario {
 	private Long id;
 	@Column(unique = true)
 	private String usuario;
+	@Column(unique = true)
+	private String email;
+	private String nome;
 	private String senha;
 	private boolean isAdmin;
 	private LocalDateTime dataInclusaoRegistro;
@@ -32,9 +35,11 @@ public class Usuario {
 	
 	
 	public Usuario(UsuarioForm usuario, PasswordEncoder enconder) {
-		this.usuario = usuario.getUsuario();
-		this.senha = enconder.encode(usuario.getSenha());
+		this.usuario = usuario.getUser();
+		this.senha = enconder.encode(usuario.getPassword());
 		this.isAdmin = usuario.isAdmin();
+		this.email = usuario.getEmail();
+		this.nome = usuario.getName();
 		this.dataInclusaoRegistro = LocalDateTime.now();
 	}
 	

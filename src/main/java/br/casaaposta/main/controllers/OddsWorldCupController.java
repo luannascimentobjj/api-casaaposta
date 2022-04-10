@@ -1,5 +1,6 @@
 package br.casaaposta.main.controllers;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +11,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.casaaposta.main.business.LogBusiness;
 import br.casaaposta.main.dto.OddsDTO;
+import br.casaaposta.main.entity.api.Log;
 import br.casaaposta.main.entity.consumer.OddsWorldCup;
-import br.casaaposta.main.interfaces.OddsWorldCupDataInterface;
+import br.casaaposta.main.interfaces.OddsWorldCupBusinessInterface;
 import io.swagger.annotations.Api;
 
 
@@ -23,56 +26,153 @@ import io.swagger.annotations.Api;
 public class OddsWorldCupController {
 	
 	@Autowired
-	private OddsWorldCupDataInterface oddsWorldCupData_;
+	private OddsWorldCupBusinessInterface oddsWorldCupBusiness_;
 	
-
+	@Autowired 
+	LogBusiness logger_;
 	
-	@GetMapping(value = "findOdds")
-	public ResponseEntity<List<OddsDTO>> findOddsWorldCup() {
+	Log log = new Log();
+	
+	@GetMapping(value = "findAllOdds")
+	public ResponseEntity<List<OddsDTO>> findAllOddsWorldCup() {
+		
+		try {
 
-		List<OddsWorldCup> resultados = oddsWorldCupData_.findAll();
+			List<OddsWorldCup> resultados = oddsWorldCupBusiness_.findAll();
+			return new ResponseEntity<>(OddsDTO.converterToWorldCup(resultados), HttpStatus.OK);
+			
+		} catch (Exception e) {
+			
+			log.setStackTrace(e.getMessage());
+			log.setError("Erro ao executar o método, OddsWorldCupController.findAllOddsWorldCup");
+			log.setDataInclusao(LocalDateTime.now());
+			logger_.save(log);
+			return ResponseEntity.internalServerError().build();
+			
+		}
 
-		return new ResponseEntity<>(OddsDTO.converterToWorldCup(resultados), HttpStatus.OK);
 
 	}
 	
 	@GetMapping(value = "findByDate/{date}")
-	public ResponseEntity<List<OddsDTO>> findResultsByData(@PathVariable String date) {
-		List<OddsWorldCup> results = oddsWorldCupData_.findByDataOrderByResultadoTipoAsc(date);
+	public ResponseEntity<List<OddsDTO>> findByDate(@PathVariable String date) {
+		
+		try {
+			
+			List<OddsWorldCup> results = oddsWorldCupBusiness_.findByDataOrderByResultadoTipoAsc(date);
+			return new ResponseEntity<>(OddsDTO.converterToWorldCup(results), HttpStatus.OK);
+			
+		} catch (Exception e) {
+			
+			log.setStackTrace(e.getMessage());
+			log.setError("Erro ao executar o método, OddsWorldCupController.findByDate");
+			log.setDataInclusao(LocalDateTime.now());
+			logger_.save(log);
+			return ResponseEntity.internalServerError().build();
+		}
+		
 
-		return new ResponseEntity<>(OddsDTO.converterToWorldCup(results), HttpStatus.OK);
 
 	}
 	
 	@GetMapping(value = "findByType/{type}")
 	public ResponseEntity<List<OddsDTO>> findResultsByType(@PathVariable String type) {
-		List<OddsWorldCup> results = oddsWorldCupData_.findByResultadoTipoOrderByResultadoTipoAsc(type);
+		
+		try {
 
-		return new ResponseEntity<>(OddsDTO.converterToWorldCup(results), HttpStatus.OK);
+			List<OddsWorldCup> results = oddsWorldCupBusiness_.findByResultadoTipoOrderByResultadoTipoAsc(type);
+			return new ResponseEntity<>(OddsDTO.converterToWorldCup(results), HttpStatus.OK);
+		
+		} catch (Exception e) {
+			
+			log.setStackTrace(e.getMessage());
+			log.setError("Erro ao executar o método, OddsWorldCupController.findByType");
+			log.setDataInclusao(LocalDateTime.now());
+			logger_.save(log);
+			return ResponseEntity.internalServerError().build();
+		}
+		
+	
 
 	}
 	
-	@GetMapping(value = "findResultsByTimeCasa/{timeCasa}")
-	public ResponseEntity<List<OddsDTO>> findResultsByTimeCasa(@PathVariable String timeCasa) {
-		List<OddsWorldCup> results = oddsWorldCupData_.findByTimeCasaOrderByResultadoTipoAsc(timeCasa);
+	@GetMapping(value = "findResultsByHomeTeam/{homeTeam}")
+	public ResponseEntity<List<OddsDTO>> findResultsByHomeTeam(@PathVariable String homeTeam) {
+		
+		try {
 
-		return new ResponseEntity<>(OddsDTO.converterToWorldCup(results), HttpStatus.OK);
+			List<OddsWorldCup> results = oddsWorldCupBusiness_.findByTimeCasaOrderByResultadoTipoAsc(homeTeam);
+			return new ResponseEntity<>(OddsDTO.converterToWorldCup(results), HttpStatus.OK);
 
+		} catch (Exception e) {
+			
+			log.setStackTrace(e.getMessage());
+			log.setError("Erro ao executar o método, OddsWorldCupController.findResultsByHomeTeam");
+			log.setDataInclusao(LocalDateTime.now());
+			logger_.save(log);
+			return ResponseEntity.internalServerError().build();
+		}
+		
+	
 	}
 	
-	@GetMapping(value = "findResultsByTimeVisitante/{timeVisitante}")
-	public ResponseEntity<List<OddsDTO>> findResultsByTimeVisitante(@PathVariable String timeVisitante) {
-		List<OddsWorldCup> results = oddsWorldCupData_.findByTimeVisitanteOrderByResultadoTipoAsc(timeVisitante);
+	@GetMapping(value = "findResultsByVisitingTeam/{visitingTeam}")
+	public ResponseEntity<List<OddsDTO>> findResultsByVisitingTeam(@PathVariable String visitingTeam) {
+		
+		try {
 
-		return new ResponseEntity<>(OddsDTO.converterToWorldCup(results), HttpStatus.OK);
+			List<OddsWorldCup> results = oddsWorldCupBusiness_.findByTimeVisitanteOrderByResultadoTipoAsc(visitingTeam);
+			return new ResponseEntity<>(OddsDTO.converterToWorldCup(results), HttpStatus.OK);
 
+		} catch (Exception e) {
+			
+			log.setStackTrace(e.getMessage());
+			log.setError("Erro ao executar o método, OddsWorldCupController.findResultsByVisitingTeam");
+			log.setDataInclusao(LocalDateTime.now());
+			logger_.save(log);
+			return ResponseEntity.internalServerError().build();
+		}
+		
+		
 	}
 	
-	@GetMapping(value = "findResultsByHora/{hora}")
-	public ResponseEntity<List<OddsDTO>> findResultsByHora(@PathVariable String hora) {
-		List<OddsWorldCup > results = oddsWorldCupData_.findByHoraOrderByResultadoTipoAsc(hora);
+	@GetMapping(value = "findResultsByHour/{hour}")
+	public ResponseEntity<List<OddsDTO>> findResultsByHour(@PathVariable String hour) {
+		
+		try {
 
-		return new ResponseEntity<>(OddsDTO.converterToWorldCup(results), HttpStatus.OK);
+			List<OddsWorldCup> results = oddsWorldCupBusiness_.findByHoraOrderByResultadoTipoAsc(hour);
+			return new ResponseEntity<>(OddsDTO.converterToWorldCup(results), HttpStatus.OK);
+
+		} catch (Exception e) {
+			
+			log.setStackTrace(e.getMessage());
+			log.setError("Erro ao executar o método, OddsWorldCupController.findResultsByHour");
+			log.setDataInclusao(LocalDateTime.now());
+			logger_.save(log);
+			return ResponseEntity.internalServerError().build();
+			
+		}
+		
+	}
+	
+	@GetMapping(value = "findMatch/{homeTeam}/{visitingTeam}")
+	public ResponseEntity<List<OddsDTO>> findMatch(@PathVariable String homeTeam, String visitingTeam) {
+		
+		try {
+			
+			List<OddsWorldCup> results = oddsWorldCupBusiness_.findByTimeCasaAndTimeVisitanteOrderByResultadoTipoAsc(homeTeam, visitingTeam);
+			return new ResponseEntity<>(OddsDTO.converterToWorldCup(results), HttpStatus.OK);
+
+		} catch (Exception e) {
+			
+			log.setStackTrace(e.getMessage());
+			log.setError("Erro ao executar o método, OddsWorldCupController.findMatch");
+			log.setDataInclusao(LocalDateTime.now());
+			logger_.save(log);
+			return ResponseEntity.internalServerError().build();
+			
+		}
 
 	}
 

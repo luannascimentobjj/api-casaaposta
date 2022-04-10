@@ -1,5 +1,6 @@
 package br.casaaposta.main.controllers;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +11,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.casaaposta.main.business.LogBusiness;
 import br.casaaposta.main.dto.OddsDTO;
+import br.casaaposta.main.entity.api.Log;
 import br.casaaposta.main.entity.consumer.OddsEuroCup;
-import br.casaaposta.main.interfaces.OddsEuroCupDataInterface;
+import br.casaaposta.main.interfaces.OddsEuroCupBusinessInterface;
 import io.swagger.annotations.Api;
 
 @RestController
@@ -21,65 +24,163 @@ import io.swagger.annotations.Api;
 public class OddsEuroCupController {
 
 	@Autowired
-	private OddsEuroCupDataInterface oddsEuroCupData_;
-		
+	private OddsEuroCupBusinessInterface oddsEuroCupBusiness_;
 	
-	@GetMapping(value = "findOdds/")
-	public ResponseEntity<List<OddsDTO>> findOddsEuroCup() {
+	@Autowired 
+	LogBusiness logger_;
+	
+	Log log = new Log();	
+	
+	@GetMapping(value = "findAllOdds/")
+	public ResponseEntity<List<OddsDTO>> findAllOddsEuroCup() {
+		
+		try {
+			
+			List<OddsEuroCup> resultados = oddsEuroCupBusiness_.findAll();
 
-		List<OddsEuroCup> resultados = oddsEuroCupData_.findAll();
+			return new ResponseEntity<>(OddsDTO.converterToEuroCup(resultados), HttpStatus.OK);
+			
+		} catch (Exception e) {
+			log.setStackTrace(e.getMessage());
+			log.setError("Erro ao executar o método, OddsEuroCupController.findOddsEuroCup");
+			log.setDataInclusao(LocalDateTime.now());
+			logger_.save(log);
+			return ResponseEntity.internalServerError().build();
+		}
 
-		return new ResponseEntity<>(OddsDTO.converterToEuroCup(resultados), HttpStatus.OK);
+	
 
 	}
 	
 	
 	@GetMapping(value = "findByDate/{date}")
-	public ResponseEntity<List<OddsDTO>> findResultsByData(@PathVariable String date) {
+	public ResponseEntity<List<OddsDTO>> findByDate(@PathVariable String date) {
 		
-		List<OddsEuroCup> results = oddsEuroCupData_.findByDataOrderByResultadoTipoAsc(date);
-
-		return new ResponseEntity<>(OddsDTO.converterToEuroCup(results), HttpStatus.OK);
+		try {
+			
+			List<OddsEuroCup> results = oddsEuroCupBusiness_.findByDataOrderByResultadoTipoAsc(date);
+			return new ResponseEntity<>(OddsDTO.converterToEuroCup(results), HttpStatus.OK);
+			
+		} catch (Exception e) {
+			
+			log.setStackTrace(e.getMessage());
+			log.setError("Erro ao executar o método, OddsEuroCupController.findByDate");
+			log.setDataInclusao(LocalDateTime.now());
+			logger_.save(log);
+			return ResponseEntity.internalServerError().build();
+			
+		}
+		
+	
 
 	}
 	
 	@GetMapping(value = "findByType/{type}")
 	public ResponseEntity<List<OddsDTO>> findResultsByType(@PathVariable String type) {
-		List<OddsEuroCup> results = oddsEuroCupData_.findByResultadoTipoOrderByResultadoTipoAsc(type);
+		
+		try {
+			
+			List<OddsEuroCup> results = oddsEuroCupBusiness_.findByResultadoTipoOrderByResultadoTipoAsc(type);
+			return new ResponseEntity<>(OddsDTO.converterToEuroCup(results), HttpStatus.OK);
+			
+		} catch (Exception e) {
+			
+			log.setStackTrace(e.getMessage());
+			log.setError("Erro ao executar o método, OddsEuroCupController.findResultsByType");
+			log.setDataInclusao(LocalDateTime.now());
+			logger_.save(log);
+			return ResponseEntity.internalServerError().build();
+			
+		}
+		
 
-		return new ResponseEntity<>(OddsDTO.converterToEuroCup(results), HttpStatus.OK);
-
-	}
-	
-	@GetMapping(value = "findResultsByTimeCasa/{timeCasa}")
-	public ResponseEntity<List<OddsDTO>> findResultsByTimeCasa(@PathVariable String timeCasa) {
-		List<OddsEuroCup> results = oddsEuroCupData_.findByTimeCasaOrderByResultadoTipoAsc(timeCasa);
-
-		return new ResponseEntity<>(OddsDTO.converterToEuroCup(results), HttpStatus.OK);
-
-	}
-	
-	@GetMapping(value = "findResultsByTimeVisitante/{timeVisitante}")
-	public ResponseEntity<List<OddsDTO>> findResultsByTimeVisitante(@PathVariable String timeVisitante) {
-		List<OddsEuroCup> results = oddsEuroCupData_.findByTimeVisitanteOrderByResultadoTipoAsc(timeVisitante);
-
-		return new ResponseEntity<>(OddsDTO.converterToEuroCup(results), HttpStatus.OK);
 
 	}
 	
-	@GetMapping(value = "findResultsByHora/{hora}")
-	public ResponseEntity<List<OddsDTO>> findResultsByHora(@PathVariable String hora) {
-		List<OddsEuroCup> results = oddsEuroCupData_.findByHoraOrderByResultadoTipoAsc(hora);
+	@GetMapping(value = "findResultsByHomeTeam/{homeTeam}")
+	public ResponseEntity<List<OddsDTO>> findResultsByHomeTeam(@PathVariable String homeTeam) {
+		
+		try {
+			
+			List<OddsEuroCup> results = oddsEuroCupBusiness_.findByTimeCasaOrderByResultadoTipoAsc(homeTeam);
+			return new ResponseEntity<>(OddsDTO.converterToEuroCup(results), HttpStatus.OK);
+			
+		} catch (Exception e) {
+			
+			log.setStackTrace(e.getMessage());
+			log.setError("Erro ao executar o método, OddsEuroCupController.findResultsByHomeTeam");
+			log.setDataInclusao(LocalDateTime.now());
+			logger_.save(log);
+			return ResponseEntity.internalServerError().build();
+			
+		}
+		
 
-		return new ResponseEntity<>(OddsDTO.converterToEuroCup(results), HttpStatus.OK);
 
 	}
 	
-	@GetMapping(value = "findJogo/{timeCasa}/{timeVisitante}")
-	public ResponseEntity<List<OddsDTO>> findJogo(@PathVariable String timeCasa, String timeVisitante) {
-		List<OddsEuroCup> results = oddsEuroCupData_.findByTimeCasaAndTimeVisitanteOrderByResultadoTipoAsc(timeCasa, timeVisitante);
+	@GetMapping(value = "findResultsByVisitingTeam/{visitingTeam}")
+	public ResponseEntity<List<OddsDTO>> findResultsByVisitingTeam(@PathVariable String visitingTeam) {
+		
+		try {
+			
+			List<OddsEuroCup> results = oddsEuroCupBusiness_.findByTimeVisitanteOrderByResultadoTipoAsc(visitingTeam);
+			return new ResponseEntity<>(OddsDTO.converterToEuroCup(results), HttpStatus.OK);
+		
+		} catch (Exception e) {
+			
+			log.setStackTrace(e.getMessage());
+			log.setError("Erro ao executar o método, OddsEuroCupController.findResultsByVisitingTeam");
+			log.setDataInclusao(LocalDateTime.now());
+			logger_.save(log);
+			return ResponseEntity.internalServerError().build();
+		}
+		
+	
 
-		return new ResponseEntity<>(OddsDTO.converterToEuroCup(results), HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "findResultsByHour/{hour}")
+	public ResponseEntity<List<OddsDTO>> findResultsByHour(@PathVariable String hour) {
+		
+		try {
+			
+			List<OddsEuroCup> results = oddsEuroCupBusiness_.findByHoraOrderByResultadoTipoAsc(hour);
+			return new ResponseEntity<>(OddsDTO.converterToEuroCup(results), HttpStatus.OK);
+			
+		} catch (Exception e) {
+			
+			log.setStackTrace(e.getMessage());
+			log.setError("Erro ao executar o método, OddsEuroCupController.findResultsByHour");
+			log.setDataInclusao(LocalDateTime.now());
+			logger_.save(log);
+			return ResponseEntity.internalServerError().build();
+			
+		}
+		
+
+
+	}
+	
+	@GetMapping(value = "findMatch/{homeTeam}/{visitingTeam}")
+	public ResponseEntity<List<OddsDTO>> findMatch(@PathVariable String homeTeam, String visitingTeam) {
+		
+		try {
+			
+			List<OddsEuroCup> results = oddsEuroCupBusiness_.findByTimeCasaAndTimeVisitanteOrderByResultadoTipoAsc(homeTeam, visitingTeam);
+			return new ResponseEntity<>(OddsDTO.converterToEuroCup(results), HttpStatus.OK);
+
+		} catch (Exception e) {
+			
+			log.setStackTrace(e.getMessage());
+			log.setError("Erro ao executar o método, OddsEuroCupController.findMatch");
+			log.setDataInclusao(LocalDateTime.now());
+			logger_.save(log);
+			return ResponseEntity.internalServerError().build();
+			
+		}
+		
+		
 
 	}
 }
