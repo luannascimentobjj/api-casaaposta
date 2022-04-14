@@ -48,7 +48,44 @@ public class OddsEuroCupController {
 			return ResponseEntity.internalServerError().build();
 		}
 
+	}
 	
+	
+	@GetMapping(value = "findAllTeams/")
+	public ResponseEntity<List<String>> findAllTeamsEuroCup() {
+		
+		try {
+			
+			List<String> resultados = oddsEuroCupBusiness_.findDistinctTimeVisitanteByTimeVisitanteIsNotNull();
+
+			return new ResponseEntity<>(resultados, HttpStatus.OK);
+			
+		} catch (Exception e) {
+			log.setStackTrace(e.getMessage());
+			log.setError("Erro ao executar o método, OddsEuroCupController.findOddsEuroCup");
+			log.setDataInclusao(LocalDateTime.now());
+			logger_.save(log);
+			return ResponseEntity.internalServerError().build();
+		}
+
+	}
+	
+	@GetMapping(value = "findAllHours/")
+	public ResponseEntity<List<String>> findAllHoursEuroCup() {
+		
+		try {
+			
+			List<String> resultados = oddsEuroCupBusiness_.findDistinctHora();
+
+			return new ResponseEntity<>(resultados, HttpStatus.OK);
+			
+		} catch (Exception e) {
+			log.setStackTrace(e.getMessage());
+			log.setError("Erro ao executar o método, OddsEuroCupController.findAllHoursEuroCup");
+			log.setDataInclusao(LocalDateTime.now());
+			logger_.save(log);
+			return ResponseEntity.internalServerError().build();
+		}
 
 	}
 	

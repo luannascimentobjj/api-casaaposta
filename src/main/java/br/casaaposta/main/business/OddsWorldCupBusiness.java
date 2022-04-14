@@ -169,4 +169,38 @@ public class OddsWorldCupBusiness implements OddsWorldCupBusinessInterface{
 		}
 	}
 
+	@Override
+	public List<String> findDistinctTimeVisitanteByTimeVisitanteIsNotNull() throws Exception {
+		try {
+			
+			return oddsWorldCupRepository_.findDistinctTimeVisitanteByTimeVisitanteIsNotNull();
+			
+		} catch (Exception e) {
+			
+			log.setStackTrace(e.getMessage());
+			log.setError("Erro ao executar o método, OddsWorldCupBusiness.findDistinctTimeVisitanteByTimeVisitanteIsNotNull");
+			log.setDataInclusao(LocalDateTime.now());
+			logger_.save(log);
+			throw new Exception(e);
+		}
+	}
+
+	@Override
+	public List<String> findDistinctHora() throws Exception {
+	
+		try {
+			
+			return oddsWorldCupRepository_.findDistinctHora();
+			
+		} catch (Exception e) {
+			
+			log.setStackTrace(e.getMessage());
+			log.setError("Erro ao executar o método, OddsWorldCupBusiness.findDistinctHora");
+			log.setDataInclusao(LocalDateTime.now());
+			logger_.save(log);
+			throw new Exception(e);
+		}
+		
+	}
+
 }

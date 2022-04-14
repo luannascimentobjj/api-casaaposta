@@ -174,4 +174,40 @@ public class OddsSuperCupBusiness implements OddsSuperCupBusinessInterface {
 		
 	}
 
+	@Override
+	public List<String> findDistinctTimeVisitanteByTimeVisitanteIsNotNull() throws Exception {
+		
+		try {
+			
+			return oddsSuperCupRepository_.findDistinctTimeVisitanteByTimeVisitanteIsNotNull();
+			
+		} catch (Exception e) {
+
+			log.setStackTrace(e.getMessage());
+			log.setError("Erro ao executar o método, OddsSuperCupBusiness.findDistinctTimeVisitanteByTimeVisitanteIsNotNull");
+			log.setDataInclusao(LocalDateTime.now());
+			logger_.save(log);
+			throw new Exception(e);
+		}
+		
+	}
+
+	@Override
+	public List<String> findDistinctHora() throws Exception {
+		
+		try {
+			
+			return oddsSuperCupRepository_.findDistinctHora();
+			
+		} catch (Exception e) {
+			
+			log.setStackTrace(e.getMessage());
+			log.setError("Erro ao executar o método, OddsSuperCupBusiness.findDistinctHora");
+			log.setDataInclusao(LocalDateTime.now());
+			logger_.save(log);
+			throw new Exception(e);
+		}
+		
+	}
+
 }

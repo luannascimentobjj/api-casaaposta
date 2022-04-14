@@ -162,8 +162,44 @@ public class OddsEuroCupBusiness implements OddsEuroCupBusinessInterface {
 			throw new Exception(e);
 		}
 		
+				
+	}
+
+	@Override
+	public List<String> findDistinctTimeVisitanteByTimeVisitanteIsNotNull() throws Exception {
 		
+		try {
+			
+					
+			return oddsEuroCupRepository_.findDistinctTimeVisitanteByTimeVisitanteIsNotNull();
+			
+		} catch (Exception e) {
+			
+			log.setStackTrace(e.getMessage());
+			log.setError("Erro ao executar o método, OddsEuroCupBusiness.findDistinctTimeVisitanteByTimeVisitanteIsNotNull");
+			log.setDataInclusao(LocalDateTime.now());
+			logger_.save(log);
+			throw new Exception(e);
+		}
 		
 	}
+
+	@Override
+	public List<String> findDistinctHora() throws Exception {
+
+		try {
+			
+			return oddsEuroCupRepository_.findDistinctHora();
+			
+		} catch (Exception e) {
+			
+			log.setStackTrace(e.getMessage());
+			log.setError("Erro ao executar o método, OddsEuroCupBusiness.findDistinctHora");
+			log.setDataInclusao(LocalDateTime.now());
+			logger_.save(log);
+			throw new Exception(e);
+		}
+
+	}	
 
 }

@@ -54,6 +54,44 @@ public class OddsWorldCupController {
 
 	}
 	
+	@GetMapping(value = "findAllTeams/")
+	public ResponseEntity<List<String>> findAllTeamsWorldCup() {
+		
+		try {
+			
+			List<String> resultados = oddsWorldCupBusiness_.findDistinctTimeVisitanteByTimeVisitanteIsNotNull();
+
+			return new ResponseEntity<>(resultados, HttpStatus.OK);
+			
+		} catch (Exception e) {
+			log.setStackTrace(e.getMessage());
+			log.setError("Erro ao executar o método, OddsWorldCupController.findAllTeamsWorldCup");
+			log.setDataInclusao(LocalDateTime.now());
+			logger_.save(log);
+			return ResponseEntity.internalServerError().build();
+		}
+
+	}
+	
+	@GetMapping(value = "findAllHours/")
+	public ResponseEntity<List<String>> findAllHoursWorldCup() {
+		
+		try {
+			
+			List<String> resultados = oddsWorldCupBusiness_.findDistinctHora();
+
+			return new ResponseEntity<>(resultados, HttpStatus.OK);
+			
+		} catch (Exception e) {
+			log.setStackTrace(e.getMessage());
+			log.setError("Erro ao executar o método, OddsWorldCupController.findAllHoursWorldCup");
+			log.setDataInclusao(LocalDateTime.now());
+			logger_.save(log);
+			return ResponseEntity.internalServerError().build();
+		}
+
+	}
+	
 	@GetMapping(value = "findByDate/{date}")
 	public ResponseEntity<List<OddsDTO>> findByDate(@PathVariable String date) {
 		

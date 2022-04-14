@@ -11,6 +11,7 @@ import br.casaaposta.main.entity.api.Log;
 import br.casaaposta.main.entity.api.Usuario;
 import br.casaaposta.main.interfaces.UsuarioBusinessInterface;
 import br.casaaposta.main.repository.api.UsuarioRepository;
+import br.casaaposta.main.util.ValidadeUtil;
 
 @Component
 public class UsuarioBusiness implements UsuarioBusinessInterface {
@@ -22,6 +23,8 @@ public class UsuarioBusiness implements UsuarioBusinessInterface {
 	LogBusiness logger_;
 
 	Log log = new Log();
+	
+	ValidadeUtil util = new ValidadeUtil();
 
 	@Override
 	public Optional<Usuario> findByUsuario(String usuario) throws Exception {
@@ -58,7 +61,15 @@ public class UsuarioBusiness implements UsuarioBusinessInterface {
 	public void save(Usuario usuario) throws Exception {
 
 		try {
-			usuarioRepository_.save(usuario);
+
+			if (util.validaEmail(usuario)) {
+				usuarioRepository_.save(usuario);
+
+			} else {
+				throw new IllegalArgumentException("Invalid Email");
+
+			}
+
 		} catch (Exception e) {
 
 			log.setStackTrace(e.getMessage());
@@ -106,5 +117,8 @@ public class UsuarioBusiness implements UsuarioBusinessInterface {
 		}
 
 	}
+
+
+	
 
 }

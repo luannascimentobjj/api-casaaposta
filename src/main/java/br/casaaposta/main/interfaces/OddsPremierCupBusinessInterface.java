@@ -22,4 +22,8 @@ public interface OddsPremierCupBusinessInterface {
 	List<OddsPremierCup> findAll() throws Exception;
 	
 	List<OddsPremierCup> findByTollTipIsNotNull() throws Exception;
+	
+	List<String> findDistinctTimeVisitanteByTimeVisitanteIsNotNull() throws Exception;
+	
+	List<String> findDistinctHora() throws Exception;
 }

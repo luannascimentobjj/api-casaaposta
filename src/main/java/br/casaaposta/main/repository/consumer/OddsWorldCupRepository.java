@@ -3,6 +3,7 @@ package br.casaaposta.main.repository.consumer;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import br.casaaposta.main.entity.consumer.OddsWorldCup;
 
@@ -23,6 +24,14 @@ public interface OddsWorldCupRepository extends JpaRepository<OddsWorldCup, Long
 	List<OddsWorldCup> findByTimeCasaAndTimeVisitanteOrderByResultadoTipoAsc(String timeCasa, String timeVisitante);
 	
 	List<OddsWorldCup> findByTollTipIsNotNull();
+	
+	@Query("SELECT DISTINCT timeVisitante FROM OddsSuperCup WHERE timeCasa IS NOT NULL")
+	List<String> findDistinctTimeVisitanteByTimeVisitanteIsNotNull();
+	
+	@Query("SELECT DISTINCT hora FROM OddsSuperCup WHERE tollTip IS NOT NULL")
+	List<String> findDistinctHora();
+	
+	
 	}
 	
 
