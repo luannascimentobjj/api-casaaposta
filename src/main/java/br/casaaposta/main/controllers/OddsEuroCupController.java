@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,14 +34,15 @@ public class OddsEuroCupController {
 	
 	Log log = new Log();	
 	
-	@GetMapping(value = "findAllOdds/")
-	public ResponseEntity<List<OddsDTO>> findAllOddsEuroCup() {
+	@GetMapping(value = "findAllOdds/{page}/{size}")
+	public ResponseEntity<Page<OddsDTO>> findAllOddsEuroCup(int page, int size) {
 		
 		try {
 			
-			List<OddsEuroCup> resultados = oddsEuroCupBusiness_.findByTollTipIsNotNull();
-
-			return new ResponseEntity<>(OddsDTO.converterToEuroCup(resultados), HttpStatus.OK);
+			Page<OddsEuroCup> resultados = oddsEuroCupBusiness_.findByTollTipIsNotNull(PageRequest.of(page, size));
+			List<OddsDTO> listToConver = OddsDTO.converterPageableEuroCup(resultados);
+			Page<OddsDTO> pages = new PageImpl<OddsDTO>(listToConver);
+			return new ResponseEntity<>(pages, HttpStatus.OK);
 			
 		} catch (Exception e) {
 			log.setStackTrace(e.getMessage());

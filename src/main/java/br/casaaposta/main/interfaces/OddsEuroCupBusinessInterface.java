@@ -2,6 +2,9 @@ package br.casaaposta.main.interfaces;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Page;
+
 import br.casaaposta.main.entity.consumer.OddsEuroCup;
 
 public interface OddsEuroCupBusinessInterface {
@@ -21,7 +24,7 @@ public interface OddsEuroCupBusinessInterface {
 	
 	List<OddsEuroCup> findAll() throws Exception;
 	
-	List<OddsEuroCup> findByTollTipIsNotNull() throws Exception;
+	Page<OddsEuroCup> findByTollTipIsNotNull(Pageable pageable) throws Exception;
 	
 	List<String> findDistinctTimeVisitanteByTimeVisitanteIsNotNull() throws Exception;
 	

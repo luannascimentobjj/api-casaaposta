@@ -1,8 +1,9 @@
 package br.casaaposta.main.dto;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.springframework.data.domain.Page;
 
 import br.casaaposta.main.entity.consumer.Liga;
 import br.casaaposta.main.entity.consumer.OddsEuroCup;
@@ -129,6 +130,11 @@ public OddsDTO(OddsWorldCup oddsWorldCup){
 		
 	}
 	
+
+	public static List<OddsDTO> converterPageableEuroCup(Page<OddsEuroCup> resultados) {
+		return resultados.stream().map(OddsDTO::new).collect(Collectors.toList());
+	}	
+
 	public static List<OddsDTO> converterToEuroCup(List<OddsEuroCup> resultados) {
 			return resultados.stream().map(OddsDTO::new).collect(Collectors.toList());
 	}

@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import br.casaaposta.main.entity.api.Log;
@@ -147,11 +149,11 @@ public class OddsEuroCupBusiness implements OddsEuroCupBusinessInterface {
 	}
 
 	@Override
-	public List<OddsEuroCup> findByTollTipIsNotNull() throws Exception {
+	public Page<OddsEuroCup> findByTollTipIsNotNull(Pageable pageable) throws Exception {
 		
 		try {
 			
-			return oddsEuroCupRepository_.findByTollTipIsNotNull();
+			return oddsEuroCupRepository_.findByTollTipIsNotNull(pageable);
 			
 		} catch (Exception e) {
 			

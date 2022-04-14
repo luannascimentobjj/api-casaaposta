@@ -1,5 +1,9 @@
 package br.casaaposta.main.repository.consumer;
 import java.util.List;
+
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import br.casaaposta.main.entity.consumer.OddsEuroCup;
 import org.springframework.data.jpa.repository.Query;
@@ -20,7 +24,7 @@ public interface OddsEuroCupRepository extends JpaRepository<OddsEuroCup, Long> 
 	
 	List<OddsEuroCup> findByTimeCasaAndTimeVisitanteOrderByResultadoTipoAsc(String timeCasa, String timeVisitante);
 	
-	List<OddsEuroCup> findByTollTipIsNotNull();
+	Page<OddsEuroCup> findByTollTipIsNotNull(Pageable pageable);
 	
 	@Query("SELECT DISTINCT timeVisitante FROM OddsEuroCup WHERE timeCasa IS NOT NULL")
 	List<String> findDistinctTimeVisitanteByTimeVisitanteIsNotNull();
@@ -29,6 +33,7 @@ public interface OddsEuroCupRepository extends JpaRepository<OddsEuroCup, Long> 
 	List<String> findDistinctHora();
 	
 	
+
 	}
 	
 
