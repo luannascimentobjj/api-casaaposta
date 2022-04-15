@@ -4,9 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import br.casaaposta.main.dto.OddsDTO;
@@ -159,12 +158,9 @@ public class OddsEuroCupBusiness implements OddsEuroCupBusinessInterface {
 			Page<OddsEuroCup> rpageable = oddsEuroCupRepository_.findByTollTipIsNotNull(pageable);
 			List<OddsDTO> listToConver = OddsDTO.converterPageableEuroCup(rpageable);
 			
-			PageDTO paging = new PageDTO(rpageable.getTotalPages(), rpageable.getTotalElements(), rpageable.getSize(),
-					rpageable.getNumberOfElements(), rpageable.getNumber(), listToConver);
-
 			// Page<OddsDTO> pages = new PageImpl<OddsDTO>(paging.getListaOdds());
 
-			return paging;
+			return PageDTO.convertEuroPaging(rpageable, listToConver);
 			
 		} catch (Exception e) {
 			
@@ -177,6 +173,8 @@ public class OddsEuroCupBusiness implements OddsEuroCupBusinessInterface {
 		
 				
 	}
+
+
 
 	@Override
 	public List<String> findDistinctTimeVisitanteByTimeVisitanteIsNotNull() throws Exception {
