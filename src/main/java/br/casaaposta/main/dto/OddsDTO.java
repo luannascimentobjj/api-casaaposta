@@ -51,7 +51,7 @@ public class OddsDTO implements Serializable {
 	private Liga codLiga;
 	
 	private String dataCompleta;
-
+	
 
 	
 	

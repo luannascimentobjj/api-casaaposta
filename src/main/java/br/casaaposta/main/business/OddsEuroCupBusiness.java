@@ -6,8 +6,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Component;
 
+import br.casaaposta.main.dto.OddsDTO;
+import br.casaaposta.main.dto.PageDTO;
 import br.casaaposta.main.entity.api.Log;
 import br.casaaposta.main.entity.consumer.OddsEuroCup;
 import br.casaaposta.main.interfaces.OddsEuroCupBusinessInterface;
@@ -149,11 +152,19 @@ public class OddsEuroCupBusiness implements OddsEuroCupBusinessInterface {
 	}
 
 	@Override
-	public Page<OddsEuroCup> findByTollTipIsNotNull(Pageable pageable) throws Exception {
+	public PageDTO findByTollTipIsNotNull(Pageable pageable) throws Exception {
 		
 		try {
 			
-			return oddsEuroCupRepository_.findByTollTipIsNotNull(pageable);
+			Page<OddsEuroCup> rpageable = oddsEuroCupRepository_.findByTollTipIsNotNull(pageable);
+			List<OddsDTO> listToConver = OddsDTO.converterPageableEuroCup(rpageable);
+			
+			PageDTO paging = new PageDTO(rpageable.getTotalPages(), rpageable.getTotalElements(), rpageable.getSize(),
+					rpageable.getNumberOfElements(), rpageable.getNumber(), listToConver);
+
+			// Page<OddsDTO> pages = new PageImpl<OddsDTO>(paging.getListaOdds());
+
+			return paging;
 			
 		} catch (Exception e) {
 			

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.casaaposta.main.business.LogBusiness;
 import br.casaaposta.main.dto.OddsDTO;
+import br.casaaposta.main.dto.PageDTO;
 import br.casaaposta.main.entity.api.Log;
 import br.casaaposta.main.entity.consumer.OddsEuroCup;
 import br.casaaposta.main.interfaces.OddsEuroCupBusinessInterface;
@@ -35,14 +36,14 @@ public class OddsEuroCupController {
 	Log log = new Log();	
 	
 	@GetMapping(value = "findAllOdds/{page}/{size}")
-	public ResponseEntity<Page<OddsDTO>> findAllOddsEuroCup(int page, int size) {
+	public ResponseEntity<PageDTO> findAllOddsEuroCup(int page, int size) {
 		
 		try {
 			
-			Page<OddsEuroCup> resultados = oddsEuroCupBusiness_.findByTollTipIsNotNull(PageRequest.of(page, size));
-			List<OddsDTO> listToConver = OddsDTO.converterPageableEuroCup(resultados);
-			Page<OddsDTO> pages = new PageImpl<OddsDTO>(listToConver);
-			return new ResponseEntity<>(pages, HttpStatus.OK);
+			//Page<OddsEuroCup> resultados = oddsEuroCupBusiness_.findByTollTipIsNotNull(PageRequest.of(page, size));
+			//List<OddsDTO> listToConver = OddsDTO.converterPageableEuroCup(resultados);
+			//Page<OddsDTO> pages = new PageImpl<OddsDTO>(listToConver);
+			return new ResponseEntity<>(oddsEuroCupBusiness_.findByTollTipIsNotNull(PageRequest.of(page, size)), HttpStatus.OK);
 			
 		} catch (Exception e) {
 			log.setStackTrace(e.getMessage());
