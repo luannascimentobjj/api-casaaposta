@@ -16,7 +16,6 @@ import br.casaaposta.main.business.LogBusiness;
 import br.casaaposta.main.dto.OddsDTO;
 import br.casaaposta.main.dto.PageDTO;
 import br.casaaposta.main.entity.api.Log;
-import br.casaaposta.main.entity.consumer.OddsEuroCup;
 import br.casaaposta.main.interfaces.OddsEuroCupBusinessInterface;
 import io.swagger.annotations.Api;
 
@@ -34,14 +33,12 @@ public class OddsEuroCupController {
 	Log log = new Log();	
 	
 	@GetMapping(value = "findAllOdds/{page}/{size}")
-	public ResponseEntity<PageDTO> findAllOddsEuroCup(int page, int size) {
+	public ResponseEntity<PageDTO> findAllOddsEuroCup(@PathVariable int page, @PathVariable int size) {
 		
 		try {
 			
-			//Page<OddsEuroCup> resultados = oddsEuroCupBusiness_.findByTollTipIsNotNull(PageRequest.of(page, size));
-			//List<OddsDTO> listToConver = OddsDTO.converterPageableEuroCup(resultados);
-			//Page<OddsDTO> pages = new PageImpl<OddsDTO>(listToConver);
-			return new ResponseEntity<>(oddsEuroCupBusiness_.findByTollTipIsNotNull(PageRequest.of(page, size)), HttpStatus.OK);
+			PageDTO resultados = oddsEuroCupBusiness_.findByTollTipIsNotNull(PageRequest.of(page, size));
+			return new ResponseEntity<>(resultados, HttpStatus.OK);
 			
 		} catch (Exception e) {
 			log.setStackTrace(e.getMessage());
@@ -60,7 +57,6 @@ public class OddsEuroCupController {
 		try {
 			
 			List<String> resultados = oddsEuroCupBusiness_.findDistinctTimeVisitanteByTimeVisitanteIsNotNull();
-
 			return new ResponseEntity<>(resultados, HttpStatus.OK);
 			
 		} catch (Exception e) {
@@ -98,8 +94,8 @@ public class OddsEuroCupController {
 		
 		try {
 			
-			List<OddsEuroCup> results = oddsEuroCupBusiness_.findByDataOrderByResultadoTipoAsc(date);
-			return new ResponseEntity<>(OddsDTO.converterToEuroCup(results), HttpStatus.OK);
+			List<OddsDTO> results = oddsEuroCupBusiness_.findByDataOrderByResultadoTipoAsc(date);
+			return new ResponseEntity<>(results, HttpStatus.OK);
 			
 		} catch (Exception e) {
 			
@@ -120,8 +116,8 @@ public class OddsEuroCupController {
 		
 		try {
 			
-			List<OddsEuroCup> results = oddsEuroCupBusiness_.findByResultadoTipoOrderByResultadoTipoAsc(type);
-			return new ResponseEntity<>(OddsDTO.converterToEuroCup(results), HttpStatus.OK);
+			List<OddsDTO> results = oddsEuroCupBusiness_.findByResultadoTipoOrderByResultadoTipoAsc(type);
+			return new ResponseEntity<>(results, HttpStatus.OK);
 			
 		} catch (Exception e) {
 			
@@ -142,8 +138,8 @@ public class OddsEuroCupController {
 		
 		try {
 			
-			List<OddsEuroCup> results = oddsEuroCupBusiness_.findByTimeCasaOrderByResultadoTipoAsc(homeTeam);
-			return new ResponseEntity<>(OddsDTO.converterToEuroCup(results), HttpStatus.OK);
+			List<OddsDTO> results = oddsEuroCupBusiness_.findByTimeCasaOrderByResultadoTipoAsc(homeTeam);
+			return new ResponseEntity<>(results, HttpStatus.OK);
 			
 		} catch (Exception e) {
 			
@@ -164,8 +160,8 @@ public class OddsEuroCupController {
 		
 		try {
 			
-			List<OddsEuroCup> results = oddsEuroCupBusiness_.findByTimeVisitanteOrderByResultadoTipoAsc(visitingTeam);
-			return new ResponseEntity<>(OddsDTO.converterToEuroCup(results), HttpStatus.OK);
+			List<OddsDTO> results = oddsEuroCupBusiness_.findByTimeVisitanteOrderByResultadoTipoAsc(visitingTeam);
+			return new ResponseEntity<>(results, HttpStatus.OK);
 		
 		} catch (Exception e) {
 			
@@ -185,8 +181,8 @@ public class OddsEuroCupController {
 		
 		try {
 			
-			List<OddsEuroCup> results = oddsEuroCupBusiness_.findByHoraOrderByResultadoTipoAsc(hour);
-			return new ResponseEntity<>(OddsDTO.converterToEuroCup(results), HttpStatus.OK);
+			List<OddsDTO> results = oddsEuroCupBusiness_.findByHoraOrderByResultadoTipoAsc(hour);
+			return new ResponseEntity<>(results, HttpStatus.OK);
 			
 		} catch (Exception e) {
 			
@@ -203,12 +199,12 @@ public class OddsEuroCupController {
 	}
 	
 	@GetMapping(value = "findMatch/{homeTeam}/{visitingTeam}")
-	public ResponseEntity<List<OddsDTO>> findMatch(@PathVariable String homeTeam, String visitingTeam) {
+	public ResponseEntity<List<OddsDTO>> findMatch(@PathVariable String homeTeam, @PathVariable String visitingTeam) {
 		
 		try {
 			
-			List<OddsEuroCup> results = oddsEuroCupBusiness_.findByTimeCasaAndTimeVisitanteOrderByResultadoTipoAsc(homeTeam, visitingTeam);
-			return new ResponseEntity<>(OddsDTO.converterToEuroCup(results), HttpStatus.OK);
+			List<OddsDTO> results = oddsEuroCupBusiness_.findByTimeCasaAndTimeVisitanteOrderByResultadoTipoAsc(homeTeam, visitingTeam);
+			return new ResponseEntity<>(results, HttpStatus.OK);
 
 		} catch (Exception e) {
 			

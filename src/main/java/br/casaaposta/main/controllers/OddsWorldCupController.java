@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.casaaposta.main.business.LogBusiness;
 import br.casaaposta.main.dto.OddsDTO;
+import br.casaaposta.main.dto.PageDTO;
 import br.casaaposta.main.entity.api.Log;
 import br.casaaposta.main.entity.consumer.OddsWorldCup;
 import br.casaaposta.main.interfaces.OddsWorldCupBusinessInterface;
@@ -33,13 +35,13 @@ public class OddsWorldCupController {
 	
 	Log log = new Log();
 	
-	@GetMapping(value = "findAllOdds")
-	public ResponseEntity<List<OddsDTO>> findAllOddsWorldCup() {
+	@GetMapping(value = "findAllOdds/{page}/{size}")
+	public ResponseEntity<PageDTO> findAllOddsWorldCup(@PathVariable int page, @PathVariable int size) {
 		
 		try {
 
-			List<OddsWorldCup> resultados = oddsWorldCupBusiness_.findByTollTipIsNotNull();
-			return new ResponseEntity<>(OddsDTO.converterToWorldCup(resultados), HttpStatus.OK);
+			PageDTO resultados = oddsWorldCupBusiness_.findByTollTipIsNotNull(PageRequest.of(page, size));
+			return new ResponseEntity<>(resultados, HttpStatus.OK);
 			
 		} catch (Exception e) {
 			
@@ -195,7 +197,7 @@ public class OddsWorldCupController {
 	}
 	
 	@GetMapping(value = "findMatch/{homeTeam}/{visitingTeam}")
-	public ResponseEntity<List<OddsDTO>> findMatch(@PathVariable String homeTeam, String visitingTeam) {
+	public ResponseEntity<List<OddsDTO>> findMatch(@PathVariable String homeTeam, @PathVariable String visitingTeam) {
 		
 		try {
 			

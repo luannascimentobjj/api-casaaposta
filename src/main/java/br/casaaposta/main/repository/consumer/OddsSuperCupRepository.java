@@ -2,6 +2,8 @@ package br.casaaposta.main.repository.consumer;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -24,7 +26,7 @@ public interface OddsSuperCupRepository extends JpaRepository<OddsSuperCup, Long
 	
 	List<OddsSuperCup> findByTimeCasaAndTimeVisitanteOrderByResultadoTipoAsc(String timeCasa, String timeVisitante);
 	
-	List<OddsSuperCup> findByTollTipIsNotNull();
+	Page<OddsSuperCup> findByTollTipIsNotNull(Pageable pageable);
 	
 	@Query("SELECT DISTINCT timeVisitante FROM OddsSuperCup WHERE timeCasa IS NOT NULL")
 	List<String> findDistinctTimeVisitanteByTimeVisitanteIsNotNull();

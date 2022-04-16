@@ -133,7 +133,19 @@ public OddsDTO(OddsWorldCup oddsWorldCup){
 
 	public static List<OddsDTO> converterPageableEuroCup(Page<OddsEuroCup> resultados) {
 		return resultados.stream().map(OddsDTO::new).collect(Collectors.toList());
-	}	
+	}
+	
+	public static List<OddsDTO> converterPageablePremierCup(Page<OddsPremierCup> resultados) {
+		return resultados.stream().map(OddsDTO::new).collect(Collectors.toList());
+	}
+	
+	public static List<OddsDTO> converterPageableSuperCup(Page<OddsSuperCup> resultados) {
+		return resultados.stream().map(OddsDTO::new).collect(Collectors.toList());
+	}
+	
+	public static List<OddsDTO> converterPageableWorldCup(Page<OddsWorldCup> resultados) {
+		return resultados.stream().map(OddsDTO::new).collect(Collectors.toList());
+	}
 
 	public static List<OddsDTO> converterToEuroCup(List<OddsEuroCup> resultados) {
 			return resultados.stream().map(OddsDTO::new).collect(Collectors.toList());

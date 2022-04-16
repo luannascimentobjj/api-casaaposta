@@ -4,8 +4,12 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
+import br.casaaposta.main.dto.OddsDTO;
+import br.casaaposta.main.dto.PageDTO;
 import br.casaaposta.main.entity.api.Log;
 import br.casaaposta.main.entity.consumer.OddsPremierCup;
 import br.casaaposta.main.interfaces.OddsPremierCupBusinessInterface;
@@ -150,11 +154,13 @@ public class OddsPremierCupBusiness implements OddsPremierCupBusinessInterface {
 	}
 
 	@Override
-	public List<OddsPremierCup> findByTollTipIsNotNull() throws Exception {
+	public PageDTO findByTollTipIsNotNull(Pageable pageable) throws Exception {
 
 		try {
+			Page<OddsPremierCup> rpageable = oddsPremierCupRepository_.findByTollTipIsNotNull(pageable);
+			List<OddsDTO> listToConvert = OddsDTO.converterPageablePremierCup(rpageable);
 			
-			return oddsPremierCupRepository_.findByTollTipIsNotNull();
+			return PageDTO.convertPremierCupToPaging(rpageable, listToConvert);
 			
 		} catch (Exception e) {
 			

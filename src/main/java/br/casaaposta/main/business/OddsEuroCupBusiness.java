@@ -28,11 +28,11 @@ public class OddsEuroCupBusiness implements OddsEuroCupBusinessInterface {
 	
 	
 	@Override
-	public List<OddsEuroCup> findByDataOrderByResultadoTipoAsc(String date) throws Exception {
+	public List<OddsDTO> findByDataOrderByResultadoTipoAsc(String date) throws Exception {
 
 		try {
 
-			return oddsEuroCupRepository_.findByDataOrderByResultadoTipoAsc(date.replace("-", "/"));
+			return OddsDTO.converterToEuroCup(oddsEuroCupRepository_.findByDataOrderByResultadoTipoAsc(date.replace("-", "/")));
 
 		} catch (Exception e) {
 
@@ -46,11 +46,11 @@ public class OddsEuroCupBusiness implements OddsEuroCupBusinessInterface {
 	}
 
 	@Override
-	public List<OddsEuroCup> findByResultadoTipoOrderByResultadoTipoAsc(String type) throws Exception {
+	public List<OddsDTO> findByResultadoTipoOrderByResultadoTipoAsc(String type) throws Exception {
 
 		try {
-
-			return oddsEuroCupRepository_.findByResultadoTipoOrderByResultadoTipoAsc(type);
+			
+			return OddsDTO.converterToEuroCup(oddsEuroCupRepository_.findByResultadoTipoOrderByResultadoTipoAsc(type));
 
 		} catch (Exception e) {
 
@@ -64,11 +64,11 @@ public class OddsEuroCupBusiness implements OddsEuroCupBusinessInterface {
 	}
 
 	@Override
-	public List<OddsEuroCup> findByTimeVisitanteOrderByResultadoTipoAsc(String timeVisitante) throws Exception {
+	public List<OddsDTO> findByTimeVisitanteOrderByResultadoTipoAsc(String timeVisitante) throws Exception {
 
 		try {
-
-			return oddsEuroCupRepository_.findByTimeVisitanteOrderByResultadoTipoAsc(timeVisitante);
+			
+			return OddsDTO.converterToEuroCup(oddsEuroCupRepository_.findByTimeVisitanteOrderByResultadoTipoAsc(timeVisitante));
 
 		} catch (Exception e) {
 
@@ -82,9 +82,11 @@ public class OddsEuroCupBusiness implements OddsEuroCupBusinessInterface {
 	}
 
 	@Override
-	public List<OddsEuroCup> findByTimeCasaOrderByResultadoTipoAsc(String timeCasa) throws Exception {
+	public List<OddsDTO> findByTimeCasaOrderByResultadoTipoAsc(String timeCasa) throws Exception {
 		try {
-			return oddsEuroCupRepository_.findByTimeCasaOrderByResultadoTipoAsc(timeCasa);
+			
+			
+			return OddsDTO.converterToEuroCup(oddsEuroCupRepository_.findByTimeCasaOrderByResultadoTipoAsc(timeCasa));
 
 		} catch (Exception e) {
 
@@ -98,10 +100,11 @@ public class OddsEuroCupBusiness implements OddsEuroCupBusinessInterface {
 	}
 
 	@Override
-	public List<OddsEuroCup> findByHoraOrderByResultadoTipoAsc(String hora) throws Exception {
+	public List<OddsDTO> findByHoraOrderByResultadoTipoAsc(String hora) throws Exception {
 
 		try {
-			return oddsEuroCupRepository_.findByHoraOrderByResultadoTipoAsc(hora);
+			
+			return OddsDTO.converterToEuroCup(oddsEuroCupRepository_.findByHoraOrderByResultadoTipoAsc(hora));
 
 		} catch (Exception e) {
 			
@@ -115,13 +118,13 @@ public class OddsEuroCupBusiness implements OddsEuroCupBusinessInterface {
 	}
 
 	@Override
-	public List<OddsEuroCup> findByTimeCasaAndTimeVisitanteOrderByResultadoTipoAsc(String timeCasa,
+	public List<OddsDTO> findByTimeCasaAndTimeVisitanteOrderByResultadoTipoAsc(String timeCasa,
 			String timeVisitante) throws Exception {
 
 		try {
-
-			return oddsEuroCupRepository_.findByTimeCasaAndTimeVisitanteOrderByResultadoTipoAsc(timeCasa,
-					timeVisitante);
+			
+			return OddsDTO.converterToEuroCup(oddsEuroCupRepository_.findByTimeCasaAndTimeVisitanteOrderByResultadoTipoAsc(timeCasa,
+					timeVisitante));
 
 		} catch (Exception e) {
 
@@ -156,11 +159,11 @@ public class OddsEuroCupBusiness implements OddsEuroCupBusinessInterface {
 		try {
 			
 			Page<OddsEuroCup> rpageable = oddsEuroCupRepository_.findByTollTipIsNotNull(pageable);
-			List<OddsDTO> listToConver = OddsDTO.converterPageableEuroCup(rpageable);
+			List<OddsDTO> listToConvert = OddsDTO.converterPageableEuroCup(rpageable);
 			
 			// Page<OddsDTO> pages = new PageImpl<OddsDTO>(paging.getListaOdds());
 
-			return PageDTO.convertEuroPaging(rpageable, listToConver);
+			return PageDTO.convertEuroCupToPaging(rpageable, listToConvert);
 			
 		} catch (Exception e) {
 			

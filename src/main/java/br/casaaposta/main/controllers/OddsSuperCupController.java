@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.casaaposta.main.business.LogBusiness;
 import br.casaaposta.main.dto.OddsDTO;
+import br.casaaposta.main.dto.PageDTO;
 import br.casaaposta.main.entity.api.Log;
 import br.casaaposta.main.entity.consumer.OddsSuperCup;
 import br.casaaposta.main.interfaces.OddsSuperCupBusinessInterface;
@@ -31,13 +33,13 @@ public class OddsSuperCupController {
 	@Autowired
 	private OddsSuperCupBusinessInterface oddsSuperCupBusiness_;
 	
-	@GetMapping(value = "findAllOdds/")
-	public ResponseEntity<List<OddsDTO>> findAllOddsSuperCup() {
+	@GetMapping(value = "findAllOdds/{page}/{size}")
+	public ResponseEntity<PageDTO> findAllOddsSuperCup(@PathVariable int page, @PathVariable int size) {
 
 		try {
 			
-			List<OddsSuperCup> resultados = oddsSuperCupBusiness_.findByTollTipIsNotNull();
-			return new ResponseEntity<>(OddsDTO.converterToSuperCup(resultados), HttpStatus.OK);
+			PageDTO resultados = oddsSuperCupBusiness_.findByTollTipIsNotNull(PageRequest.of(page, size));
+			return new ResponseEntity<>(resultados, HttpStatus.OK);
 			
 		} catch (Exception e) {
 			
@@ -199,7 +201,7 @@ public class OddsSuperCupController {
 	}
 	
 	@GetMapping(value = "findMatch/{homeTeam}/{visitingTeam}")
-	public ResponseEntity<List<OddsDTO>> findMatch(@PathVariable String homeTeam, String visitingTeam) {
+	public ResponseEntity<List<OddsDTO>> findMatch(@PathVariable String homeTeam, @PathVariable String visitingTeam) {
 		
 		try {
 			
