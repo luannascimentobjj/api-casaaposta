@@ -11,7 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import br.casaaposta.main.dto.OddsDTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -21,7 +20,7 @@ import lombok.NoArgsConstructor;
 @Table(name="odds_eurocup")
 @Data
 @NoArgsConstructor
-public class OddsEuroCup extends OddsDTO implements Serializable{
+public class OddsEuroCup implements Serializable{
 	
 	private static final long serialVersionUID = 8511686573089879079L;
 

@@ -1,8 +1,16 @@
 package br.casaaposta.main.entity.consumer;
 import java.io.Serializable;
-import javax.persistence.*;
 
-import br.casaaposta.main.dto.OddsDTO;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,7 +20,7 @@ import lombok.NoArgsConstructor;
 @Table(name="odds_supercup")
 @NoArgsConstructor
 @Data
-public class OddsSuperCup  extends OddsDTO implements Serializable{
+public class OddsSuperCup implements Serializable{
 	
 	private static final long serialVersionUID = 8511686573089879079L;
 
