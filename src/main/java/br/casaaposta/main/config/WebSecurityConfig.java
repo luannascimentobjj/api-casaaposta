@@ -47,6 +47,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 	
+	 @Bean
+	  CorsConfigurationSource corsConfigurationSource() 
+	  {
+	    CorsConfiguration configuration = new CorsConfiguration();
+	    configuration.setAllowedOrigins(Arrays.asList("*"));
+	    configuration.setAllowedMethods(Arrays.asList("GET","POST", "DELETE", "PUT"));
+	    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+	    source.registerCorsConfiguration("/**", configuration);
+	    return source;
+	  }
+	
+	
 	
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
@@ -56,10 +68,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/swagger-resources/**", "/configuration/**", "/swagger-ui.html", "/webjars/**")
 				.permitAll().
 				// Qualquer outra requisição deve ser checada
-				anyRequest().authenticated().and().exceptionHandling()
+				 anyRequest().authenticated().and().exceptionHandling()
 				.authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+		httpSecurity.cors();
 	}
 	
 }
