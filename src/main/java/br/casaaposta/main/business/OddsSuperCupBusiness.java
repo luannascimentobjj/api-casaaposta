@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import br.casaaposta.main.dto.OddsDTO;
 import br.casaaposta.main.dto.PageDTO;
 import br.casaaposta.main.entity.api.Log;
+import br.casaaposta.main.entity.consumer.OddsPremierCup;
 import br.casaaposta.main.entity.consumer.OddsSuperCup;
 import br.casaaposta.main.interfaces.OddsSuperCupBusinessInterface;
 import br.casaaposta.main.repository.consumer.OddsSuperCupRepository;
