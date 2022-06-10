@@ -177,7 +177,7 @@ public class OddsWorldCupController {
 	}
 	
 	@GetMapping(value = "findResultsByHour/{hour}")
-	public ResponseEntity<List<OddsDTO>> findResultsByHour(@PathVariable String hour) {
+	public ResponseEntity<List<OddsDTO>> findResultsByHour(@PathVariable int hour) {
 		
 		try {
 

@@ -17,7 +17,7 @@ public interface OddsEuroCupBusinessInterface {
 	
 	List<OddsDTO> findByTimeCasaOrderByResultadoTipoAsc(String timeVisitante) throws Exception;
 	
-	List<OddsDTO> findByHoraOrderByResultadoTipoAsc(String hora) throws Exception;
+	List<OddsDTO> findByHoraOrderByResultadoTipoAsc(int hora) throws Exception;
 	
 	List<OddsDTO> findByTimeCasaAndTimeVisitanteOrderByResultadoTipoAsc(String timeCasa, String timeVisitante) throws Exception;
 	

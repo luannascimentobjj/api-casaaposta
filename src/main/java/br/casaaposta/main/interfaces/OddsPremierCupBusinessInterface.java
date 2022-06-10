@@ -18,7 +18,7 @@ public interface OddsPremierCupBusinessInterface {
 	
 	List<OddsPremierCup> findByTimeCasaOrderByResultadoTipoAsc(String timeCasa) throws Exception;
 	
-	List<OddsPremierCup> findByHoraOrderByResultadoTipoAsc(String hora) throws Exception;
+	List<OddsPremierCup> findByHoraOrderByResultadoTipoAsc(int hora) throws Exception;
 	
 	List<OddsPremierCup> findByTimeCasaAndTimeVisitanteOrderByResultadoTipoAsc(String timeCasa, String timeVisitante) throws Exception;
 	

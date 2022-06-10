@@ -101,7 +101,7 @@ public class OddsSuperCupBusiness implements OddsSuperCupBusinessInterface {
 	}
 
 	@Override
-	public List<OddsSuperCup> findByHoraOrderByResultadoTipoAsc(String hora) throws Exception {
+	public List<OddsSuperCup> findByHoraOrderByResultadoTipoAsc(int hora) throws Exception {
 		
 		try {
 		

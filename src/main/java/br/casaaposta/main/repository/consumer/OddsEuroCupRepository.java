@@ -20,7 +20,7 @@ public interface OddsEuroCupRepository extends JpaRepository<OddsEuroCup, Long> 
 	
 	List<OddsEuroCup> findByTimeCasaOrderByResultadoTipoAsc(String timeVisitante);
 	
-	List<OddsEuroCup> findByHoraOrderByResultadoTipoAsc(String hora);
+	List<OddsEuroCup> findByHoraOrderByResultadoTipoAsc(int hora);
 	
 	List<OddsEuroCup> findByTimeCasaAndTimeVisitanteOrderByResultadoTipoAsc(String timeCasa, String timeVisitante);
 	

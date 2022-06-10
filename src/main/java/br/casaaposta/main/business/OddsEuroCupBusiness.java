@@ -100,7 +100,7 @@ public class OddsEuroCupBusiness implements OddsEuroCupBusinessInterface {
 	}
 
 	@Override
-	public List<OddsDTO> findByHoraOrderByResultadoTipoAsc(String hora) throws Exception {
+	public List<OddsDTO> findByHoraOrderByResultadoTipoAsc(int hora) throws Exception {
 
 		try {
 			

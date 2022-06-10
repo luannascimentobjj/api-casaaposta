@@ -22,7 +22,7 @@ public interface OddsSuperCupRepository extends JpaRepository<OddsSuperCup, Long
 
 	List<OddsSuperCup> findByTimeCasaOrderByResultadoTipoAsc(String timeVisitante);
 
-	List<OddsSuperCup> findByHoraOrderByResultadoTipoAsc(String hora);
+	List<OddsSuperCup> findByHoraOrderByResultadoTipoAsc(int hora);
 	
 	List<OddsSuperCup> findByTimeCasaAndTimeVisitanteOrderByResultadoTipoAsc(String timeCasa, String timeVisitante);
 	
